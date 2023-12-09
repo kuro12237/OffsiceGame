@@ -139,7 +139,7 @@ void ModelCubeState::CommandCall(Model* state, WorldTransform worldTransform, Vi
 		commands.m_pList->SetGraphicsRootConstantBufferView(7, LightingManager::GetBuffer()->GetGPUVirtualAddress());
 
 	}
-	commands.m_pList->DrawIndexedInstanced(36 , 1, 0, 0, 0);
+	commands.m_pList->DrawIndexedInstanced(36,1,0,0,0);
 }
 
 
