@@ -8,7 +8,7 @@ void ModelSphereState::Initialize(Model* state)
 	resource_.Vertex = CreateResources::CreateBufferResource(sizeof(VertexData) * v);
 	resource_.Material = CreateResources::CreateBufferResource(sizeof(Material));
 	resource_.BufferView = CreateResources::VertexCreateBufferView(sizeof(VertexData) * v, resource_.Vertex.Get(), v);
-	if (state->GetUseLight()!=NONE)
+	if (state->GetUseLight())
 	{
 		resource_.Light = CreateResources::CreateBufferResource(sizeof(LightData));
 	}
@@ -144,7 +144,7 @@ void ModelSphereState::CommandCall(Model*state, WorldTransform worldTransform, V
 	if (!state->GetTexHandle() == 0) {
 		PSO = GraphicsPipelineManager::GetInstance()->GetPso().Sprite3d.none;
 	}
-	if (state->GetUseLight() == HARF_LAMBERT)
+	if (state->GetUseLight())
 	{
 		PSO = GraphicsPipelineManager::GetInstance()->GetPso().Lighting;
 	}
@@ -166,7 +166,7 @@ void ModelSphereState::CommandCall(Model*state, WorldTransform worldTransform, V
 	{
 		DescriptorManager::rootParamerterCommand(3, state->GetTexHandle());
 	}
-	if (state->GetUseLight()!=NONE)
+	if (state->GetUseLight())
 	{
 		commands.m_pList->SetGraphicsRootConstantBufferView(4, resource_.Light->GetGPUVirtualAddress());
 		commands.m_pList->SetGraphicsRootConstantBufferView(5, viewprojection.buffer_->GetGPUVirtualAddress());

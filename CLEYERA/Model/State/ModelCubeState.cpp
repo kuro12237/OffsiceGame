@@ -7,7 +7,7 @@ void ModelCubeState::Initialize(Model* state)
 	resource_.Vertex = CreateResources::CreateBufferResource(sizeof(VertexData) * v);
 	resource_.Material = CreateResources::CreateBufferResource(sizeof(Material));
 	resource_.BufferView = CreateResources::VertexCreateBufferView(sizeof(VertexData) * v, resource_.Vertex.Get(), v);
-	if (state->GetUseLight() != NONE)
+	if (state->GetUseLight())
 	{
 		resource_.Light = CreateResources::CreateBufferResource(sizeof(LightData));
 	}
@@ -115,9 +115,9 @@ void ModelCubeState::CommandCall(Model* state, WorldTransform worldTransform, Vi
 	if (!state->GetTexHandle() == 0) {
 		PSO = GraphicsPipelineManager::GetInstance()->GetPso().Sprite3d.none;
 	}
-	if (state->GetUseLight() == HARF_LAMBERT)
+	if (state->GetUseLight())
 	{
-		//PSO = GraphicsPipelineManager::GetInstance()->GetPso().Herf_Lambert;
+		PSO = GraphicsPipelineManager::GetInstance()->GetPso().Lighting;
 	}
 	commands.m_pList->SetGraphicsRootSignature(PSO.rootSignature.Get());
 	commands.m_pList->SetPipelineState(PSO.GraphicsPipelineState.Get());
@@ -128,25 +128,18 @@ void ModelCubeState::CommandCall(Model* state, WorldTransform worldTransform, Vi
 	commands.m_pList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
 	commands.m_pList->SetGraphicsRootConstantBufferView(0, resource_.Material->GetGPUVirtualAddress());
-	
-	commands.m_pList->SetGraphicsRootConstantBufferView(3, viewprojection.buffer_->GetGPUVirtualAddress());
 	commands.m_pList->SetGraphicsRootConstantBufferView(1, worldTransform.buffer_->GetGPUVirtualAddress());
-
-	if (!state->GetTexHandle() == 0)
+	commands.m_pList->SetGraphicsRootConstantBufferView(2, viewprojection.buffer_->GetGPUVirtualAddress());
+	DescriptorManager::rootParamerterCommand(3, state->GetTexHandle());
+	if (state->GetUseLight())
 	{
-		DescriptorManager::rootParamerterCommand(2, state->GetTexHandle());
+		commands.m_pList->SetGraphicsRootConstantBufferView(4, resource_.Light->GetGPUVirtualAddress());
+		commands.m_pList->SetGraphicsRootConstantBufferView(5, viewprojection.buffer_->GetGPUVirtualAddress());
+		DescriptorManager::rootParamerterCommand(6, LightingManager::dsvHandle());
+		commands.m_pList->SetGraphicsRootConstantBufferView(7, LightingManager::GetBuffer()->GetGPUVirtualAddress());
+
 	}
-
-
-
-
-
-	if (state->GetUseLight() != NONE)
-	{
-		//commands.m_pList->SetGraphicsRootConstantBufferView(3, resource_.Light->GetGPUVirtualAddress());
-	}
-
-	commands.m_pList->DrawIndexedInstanced(36 , 1, 0, 0, 0);
+	commands.m_pList->DrawIndexedInstanced(36,1,0,0,0);
 }
 
 
