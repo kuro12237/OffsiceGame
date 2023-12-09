@@ -144,7 +144,7 @@ void ModelSphereState::CommandCall(Model*state, WorldTransform worldTransform, V
 	if (!state->GetTexHandle() == 0) {
 		PSO = GraphicsPipelineManager::GetInstance()->GetPso().Sprite3d.none;
 	}
-	if (state->GetUseLight() == HARF_LAMBERT)
+	if (state->GetUseLight())
 	{
 		PSO = GraphicsPipelineManager::GetInstance()->GetPso().Lighting;
 	}

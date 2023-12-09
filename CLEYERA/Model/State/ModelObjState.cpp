@@ -57,7 +57,7 @@ void ModelObjState::Draw(Model* state, WorldTransform worldTransform, ViewProjec
 
 	Commands commands = DirectXCommon::GetInstance()->GetCommands();
 	SPSOProperty PSO = GraphicsPipelineManager::GetInstance()->GetPso().Sprite3d.none;
-	if (state->GetUseLight() == HARF_LAMBERT)
+	if (state->GetUseLight())
 	{
 		PSO = GraphicsPipelineManager::GetInstance()->GetPso().Lighting;
 	}
