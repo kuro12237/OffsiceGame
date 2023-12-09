@@ -44,21 +44,21 @@ void Grid::UpdateExecute()
 {
 	for (int i = 0; i < XYGridLine_Max; i++)
 	{
-		//XworldTransform_[i].UpdateMatrix();
-		//ZworldTransform_[i].UpdateMatrix();
+		Grid::GetInstance()->XworldTransform_[i].UpdateMatrix();
+		Grid::GetInstance()->ZworldTransform_[i].UpdateMatrix();
 	}
-	//YworldTransform_.UpdateMatrix();
-	//CenterWorldTransform_.UpdateMatrix();
+	Grid::GetInstance()->YworldTransform_.UpdateMatrix();
+	Grid::GetInstance()->CenterWorldTransform_.UpdateMatrix();
 }
 
 void Grid::DrawExecute(ViewProjection viewProjection)
 {
 	for (int i = 0; i < XYGridLine_Max; i++)
 	{
-		Grid::GetInstance()->XLine_[i]->Draw(XworldTransform_[i], viewProjection);
-		Grid::GetInstance()->ZLine_[i]->Draw(ZworldTransform_[i], viewProjection);
+		Grid::GetInstance()->XLine_[i]->Draw(Grid::GetInstance()->XworldTransform_[i], viewProjection);
+		Grid::GetInstance()->ZLine_[i]->Draw(Grid::GetInstance()->ZworldTransform_[i], viewProjection);
 	}
 
-	Grid::GetInstance()->YLine_->Draw(YworldTransform_, viewProjection);
-	Grid::GetInstance()->CenterPoint_->Draw(CenterWorldTransform_, viewProjection);
+	Grid::GetInstance()->YLine_->Draw(Grid::GetInstance()->YworldTransform_, viewProjection);
+	Grid::GetInstance()->CenterPoint_->Draw(Grid::GetInstance()->CenterWorldTransform_, viewProjection);
 }

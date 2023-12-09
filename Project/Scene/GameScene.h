@@ -6,13 +6,17 @@
 #include"FileLoader.h"
 #include"CollisionManager.h"
 #include"Particle/Particle.h"
-#include"Quaternion/QuaternionTransform.h"
+#include"ModelManager.h"
+#include"Light/Light.h"
+#include"DebugTools/DebugTools.h"
 
-class MTScene :public IScene
+
+class GameScene :public IScene
 {
 public:
-	MTScene() {};
-	~MTScene() {};
+	GameScene() {};
+	~GameScene() {};
+
 
 	void Initialize()override;
 
@@ -24,11 +28,6 @@ public:
 
 private:
 
-	Vector3 axis_{ 1.0f ,1.0f ,1.0f };
-	float angle = 0.44f;
-	Matrix4x4 rotateMatrix_ = {};
+	ViewProjection viewProjection_{};
 
-	unique_ptr<Model>model_ = nullptr;
-	WorldTransform worldTransform_ = {};
-	ViewProjection viewProjection_ = {};
 };
