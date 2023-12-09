@@ -9,6 +9,7 @@
 #include"ModelManager.h"
 #include"Light/Light.h"
 #include"DebugTools/DebugTools.h"
+#include"GameObject/SkyBox/SkyBox.h"
 
 
 class GameScene :public IScene
@@ -30,4 +31,8 @@ private:
 
 	ViewProjection viewProjection_{};
 
+	unique_ptr<Model>model_ = nullptr;
+	WorldTransform worldTransform_{};
+
+	unique_ptr<SkyBox>skyBox_ = nullptr;
 };

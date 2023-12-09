@@ -139,6 +139,12 @@
     <Filter Include="Project\GameObject">
       <UniqueIdentifier>{87e2db38-109f-4101-b6bd-93d041c05a8f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Project\GameObject\MapManager">
+      <UniqueIdentifier>{9d8ae1d6-4171-4f33-be10-7318d85fa3d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\GameObject\SkyBox">
+      <UniqueIdentifier>{95217f71-4fdf-4170-82ca-869e400c2ad7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="CLEYERA\Config\.editorconfig">
@@ -284,6 +290,9 @@
     </ClCompile>
     <ClCompile Include="Project\Scene\GameScene.cpp">
       <Filter>Project\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Project\GameObject\SkyBox\SkyBox.cpp">
+      <Filter>Project\GameObject\SkyBox</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -460,6 +469,12 @@
     </ClInclude>
     <ClInclude Include="Project\Scene\GameScene.h">
       <Filter>Project\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Project\GameObject\MapManager\MapManager.h">
+      <Filter>Project\GameObject\MapManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Project\GameObject\SkyBox\SkyBox.h">
+      <Filter>Project\GameObject\SkyBox</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
