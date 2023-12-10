@@ -2,10 +2,7 @@
 
 ModelObjState::~ModelObjState()
 {
-	resource_.Vertex.Reset();
-	resource_.Material.Reset();
-	resource_.Light.Reset();
-	resource_.wvpResource.Reset();
+
 }
 
 void ModelObjState::Initialize(Model* state)

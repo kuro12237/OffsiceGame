@@ -26,9 +26,9 @@ ComPtr<ID3D12Resource> CreateResources::CreateBufferResource(size_t sizeInbyte)
 	return result;
 }
 
-void CreateResources::CreateBufferResource(size_t sizeInbyte, ComPtr<ID3D12Resource>& Resource)
+void CreateResources::CreateBufferResource(size_t sizeInbyte, ComPtr<ID3D12Resource>&Resource)
 {
-	ComPtr<ID3D12Device> device = DirectXCommon::GetInstance()->GetDevice();
+	ID3D12Device* device = DirectXCommon::GetInstance()->GetDevice();
 
 	D3D12_HEAP_PROPERTIES uploadHeapProperties{};
 	uploadHeapProperties.Type = D3D12_HEAP_TYPE_UPLOAD;
@@ -55,10 +55,9 @@ D3D12_VERTEX_BUFFER_VIEW CreateResources::VertexCreateBufferView(size_t sizeInby
 
 	resultBufferView.BufferLocation = Resource->GetGPUVirtualAddress();
 
-	//�g�p���郊�\�[�X�̃T�C�Y�͒��_3���̃T�C�Y
+
 	resultBufferView.SizeInBytes = UINT(sizeInbyte);
 
-	//1���_������̃T�C�Y
 	resultBufferView.StrideInBytes = UINT(sizeInbyte / size);
 	return resultBufferView; 
 }

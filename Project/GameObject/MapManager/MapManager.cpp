@@ -30,8 +30,9 @@ void MapManager::Update()
 			}
 		}
 		//Modelを作り直す
+	
 		MapManager::GetInstance()->block_.clear();
-
+		
 		const size_t NumZSize = MapManager::GetInstance()->nowMapData_.size();
 		MapManager::GetInstance()->block_.resize(NumZSize);
 
@@ -47,6 +48,7 @@ void MapManager::Update()
 
 				for (size_t x = 0; x < NumXSize; x++)
 				{
+					MapManager::GetInstance()->block_[z][y][x].model.release();
 					MapManager::GetInstance()->block_[z][y][x].model = make_unique<Model>();
 					MapManager::GetInstance()->block_[z][y][x].model->UseLight();
 					MapManager::GetInstance()->block_[z][y][x].model->SetModel(MapManager::GetInstance()->ModelHandle_);

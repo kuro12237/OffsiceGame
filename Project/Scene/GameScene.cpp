@@ -32,8 +32,12 @@ void GameScene::Update(GameManager* Scene)
 	MapManager::Update();
 	Scene;
 
+	ImGui::Begin("MapSelect");
+	ImGui::InputInt("StageNumber", &SelectStage_);
+	ImGui::End();
 	
-	
+	MapManager::SetNextMaptip(SelectStage_);
+
 	if (Input::PushKey(DIK_W))
 	{
 		viewProjection_.translation_.y += 0.1f;

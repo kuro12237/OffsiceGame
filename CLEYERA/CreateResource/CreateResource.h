@@ -72,6 +72,9 @@ class CreateResources
 {
 public:
 
+	CreateResources() {};
+	~CreateResources() {};
+
 	/// <summary>
 	/// Resource作成
 	/// </summary>
@@ -80,7 +83,7 @@ public:
 	/// <returns></returns>
 	static ComPtr<ID3D12Resource> CreateBufferResource(size_t sizeInbyte);
 
-	static void CreateBufferResource(size_t sizeInbyte, ComPtr<ID3D12Resource>& Resource);
+	static void CreateBufferResource(size_t sizeInbyte, ComPtr<ID3D12Resource> &Resource);
 
 
 	/// <summary>

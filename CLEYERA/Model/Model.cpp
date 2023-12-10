@@ -1,8 +1,6 @@
 #include "Model.h"
 
-Model::~Model()
-{
-}
+
 
 void Model::CreateModel(unique_ptr<IModelState> state, Vector4 CenterPos , float size , Vector4 color)
 {
