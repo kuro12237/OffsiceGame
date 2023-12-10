@@ -37,15 +37,13 @@ void GameScene::Update(GameManager* Scene)
 	ImGui::Begin("GameScene");
 	ImGui::PopStyleColor();
 	ImGui::PopStyleColor();
+
 	if (ImGui::TreeNode("Map"))
 	{
-	
-		
 		ImGui::InputInt("StageNumber", &SelectStage_);
 		ImGui::TreePop();
 	}
 
-	
 	if (ImGui::TreeNode("Camera"))
 	{
 		ImGui::DragFloat3("translate", &viewProjection_.translation_.x, -1.0f, 1.0f);
