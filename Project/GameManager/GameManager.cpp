@@ -3,7 +3,7 @@
 GameManager::GameManager()
 {
 	Cleyera::Initialize();
-	Scene_ = new DebugScene();
+	Scene_ = new GameScene();
 	Scene_->Initialize();
 }
 
@@ -19,8 +19,11 @@ void GameManager::Run()
 	{
 		Cleyera::BeginFlame();
 	
+		LightingManager::ClearList();
+
 		Scene_->Update(this);
 		
+		LightingManager::TransfarBuffers();
 		
 		Scene_->Back2dSpriteDraw();
 		Scene_->Object3dDraw();

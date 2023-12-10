@@ -121,9 +121,6 @@
     <Filter Include="CLEYERA\Model\Cube">
       <UniqueIdentifier>{e412e551-47a5-42ed-ae39-05603aeb4f80}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Project\Scene\CreatePhongModelScene">
-      <UniqueIdentifier>{920f8ac2-e3af-4d13-b3b4-6e11c801e5d7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="CLEYERA\math\Quaternion">
       <UniqueIdentifier>{d1cf5c41-681a-4ff6-92df-656d7304e1f1}</UniqueIdentifier>
     </Filter>
@@ -141,6 +138,15 @@
     </Filter>
     <Filter Include="Project\GameObject">
       <UniqueIdentifier>{87e2db38-109f-4101-b6bd-93d041c05a8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\GameObject\MapManager">
+      <UniqueIdentifier>{9d8ae1d6-4171-4f33-be10-7318d85fa3d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\GameObject\SkyBox">
+      <UniqueIdentifier>{95217f71-4fdf-4170-82ca-869e400c2ad7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\GameObject\Sun">
+      <UniqueIdentifier>{1c21503c-f6d9-4648-8478-c5158ed446db}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -264,12 +270,6 @@
     <ClCompile Include="CLEYERA\Audio\AudioDataResource.cpp">
       <Filter>CLEYERA\Audio</Filter>
     </ClCompile>
-    <ClCompile Include="Project\Scene\CreatePhongModelScene.cpp">
-      <Filter>Project\Scene\CreatePhongModelScene</Filter>
-    </ClCompile>
-    <ClCompile Include="Project\Scene\MTScene.cpp">
-      <Filter>Project\Scene</Filter>
-    </ClCompile>
     <ClCompile Include="CLEYERA\math\Quaternion\QuaternionTransform.cpp">
       <Filter>CLEYERA\math\Quaternion</Filter>
     </ClCompile>
@@ -290,6 +290,18 @@
     </ClCompile>
     <ClCompile Include="Project\GameObject\FireParticles\FireParticle.cpp">
       <Filter>Project\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Project\Scene\GameScene.cpp">
+      <Filter>Project\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Project\GameObject\SkyBox\SkyBox.cpp">
+      <Filter>Project\GameObject\SkyBox</Filter>
+    </ClCompile>
+    <ClCompile Include="Project\GameObject\MapManager\MapManager.cpp">
+      <Filter>Project\GameObject\MapManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Project\GameObject\Sun\Sun.cpp">
+      <Filter>Project\GameObject\Sun</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -428,12 +440,6 @@
     <ClInclude Include="CLEYERA\Audio\AudioDataResource.h">
       <Filter>CLEYERA\Audio</Filter>
     </ClInclude>
-    <ClInclude Include="Project\Scene\CreatePhongModelScene.h">
-      <Filter>Project\Scene\CreatePhongModelScene</Filter>
-    </ClInclude>
-    <ClInclude Include="Project\Scene\MTScene.h">
-      <Filter>Project\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="CLEYERA\math\Quaternion\QuaternionTransform.h">
       <Filter>CLEYERA\math\Quaternion</Filter>
     </ClInclude>
@@ -469,6 +475,21 @@
     </ClInclude>
     <ClInclude Include="Project\GameObject\FireParticles\FireParticle.h">
       <Filter>Project\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Project\Scene\GameScene.h">
+      <Filter>Project\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Project\GameObject\MapManager\MapManager.h">
+      <Filter>Project\GameObject\MapManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Project\GameObject\SkyBox\SkyBox.h">
+      <Filter>Project\GameObject\SkyBox</Filter>
+    </ClInclude>
+    <ClInclude Include="Project\GameObject\MapManager\MapData.h">
+      <Filter>Project\GameObject\MapManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Project\GameObject\Sun\Sun.h">
+      <Filter>Project\GameObject\Sun</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

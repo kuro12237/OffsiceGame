@@ -21,7 +21,7 @@ enum SUseLight
 class Model
 {
 public:
-	~Model();
+	~Model() {};
 	
 	/// <summary>
 	/// 初期化
