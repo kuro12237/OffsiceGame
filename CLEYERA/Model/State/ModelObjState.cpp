@@ -36,10 +36,6 @@ void ModelObjState::Draw(Model* state, WorldTransform worldTransform, ViewProjec
 	SModelData ModelData_ = {};
 	ModelData_ = ModelManager::GetObjData(state->GetModelHandle());
 	memcpy(vertexData, ModelData_.vertices.data(), sizeof(VertexData) * ModelData_.vertices.size());
-	//ModelData_.vertices.clear();
-	ImGui::Begin("direction");
-	ImGui::SliderFloat3("t", &testLightDirection.x, -1.0f, 1.0f);
-	ImGui::End();
 
 	materialData->shininess = 70.0f;
 	materialData->color = state->GetColor();

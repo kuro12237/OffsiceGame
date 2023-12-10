@@ -10,8 +10,9 @@
 #include"Light/Light.h"
 #include"DebugTools/DebugTools.h"
 #include"GameObject/SkyBox/SkyBox.h"
-
-
+#include"GameObject/MapManager/MapManager.h"
+#include"Light/LightingManager.h"
+#include"GameObject/Sun/Sun.h"
 class GameScene :public IScene
 {
 public:
@@ -35,4 +36,6 @@ private:
 	WorldTransform worldTransform_{};
 
 	unique_ptr<SkyBox>skyBox_ = nullptr;
+	unique_ptr<Sun>sun_ = nullptr;
+	
 };
