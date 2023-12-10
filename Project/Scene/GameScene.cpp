@@ -31,37 +31,31 @@ void GameScene::Update(GameManager* Scene)
 {
 	MapManager::Update();
 	Scene;
+	ImGui::PushStyleColor(ImGuiCol_TitleBgActive, ImVec4(0.08f, 0.08f, 0.08f, 1.0f));
+	ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.02f, 0.02f, 0.02f, 1.0f));
 
-	ImGui::Begin("MapSelect");
-	ImGui::InputInt("StageNumber", &SelectStage_);
-	ImGui::End();
+	ImGui::Begin("GameScene");
+	ImGui::PopStyleColor();
+	ImGui::PopStyleColor();
+	if (ImGui::TreeNode("Map"))
+	{
 	
+		
+		ImGui::InputInt("StageNumber", &SelectStage_);
+		ImGui::TreePop();
+	}
+
+	
+	if (ImGui::TreeNode("Camera"))
+	{
+		ImGui::DragFloat3("translate", &viewProjection_.translation_.x, -1.0f, 1.0f);
+		ImGui::DragFloat3("rotate", &viewProjection_.rotation_.x, -1.0f, 1.0f);
+		ImGui::TreePop();
+	}
+	ImGui::End();
+
 	MapManager::SetNextMaptip(SelectStage_);
 
-	if (Input::PushKey(DIK_W))
-	{
-		viewProjection_.translation_.y += 0.1f;
-	}
-	if (Input::PushKey(DIK_S))
-	{
-		viewProjection_.translation_.y -= 0.1f;
-	}
-
-	if (Input::PushKey(DIK_A))
-	{
-		viewProjection_.translation_.x -= 0.1f;
-	}	if (Input::PushKey(DIK_D))
-	{
-		viewProjection_.translation_.x += 0.1f;
-	}
-
-	if (Input::PushKey(DIK_LEFT))
-	{
-		viewProjection_.rotation_.y -= 0.03f;
-	}	if (Input::PushKey(DIK_RIGHT))
-	{
-		viewProjection_.rotation_.y += 0.03f;
-	}
 
 	worldTransform_.UpdateMatrix();
 	
