@@ -11,7 +11,7 @@ void MapManager::Initialize()
     FileLoad("Stage1");
 	FileLoad("Stage2");
 
-	MapManager::GetInstance()->nowStage_ = 2;
+	MapManager::GetInstance()->nowStage_ = 1;
 	MapManager::GetInstance()->ModelHandle_ = ModelManager::LoadObjectFile("TestWoodBlock");
 
 }

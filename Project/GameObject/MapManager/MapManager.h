@@ -30,7 +30,7 @@ private:
 
 	static bool ChackNowMapTip();
 
-	uint32_t nowStage_ = 0;
+	uint32_t nowStage_ = 1;
 	uint32_t prevSatge_ = 0;
 
 	vector<vector<vector<Block_param>>>block_ = {};

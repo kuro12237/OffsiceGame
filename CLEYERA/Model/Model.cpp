@@ -28,7 +28,8 @@ void Model::SetModel(uint32_t handle)
 
 	if (prevModelHandle_ != modelHandle_)
 	{
-		state_.reset(new ModelObjState);
+		state_.release(); 
+		state_ = make_unique<ModelObjState>();
 		state_->Initialize(this);
 	}
 }

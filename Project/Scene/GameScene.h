@@ -37,6 +37,6 @@ private:
 
 	unique_ptr<SkyBox>skyBox_ = nullptr;
 	unique_ptr<Sun>sun_ = nullptr;
-	int SelectStage_ = 0;
+	int SelectStage_ = 1;
 
 };
