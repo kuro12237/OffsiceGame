@@ -30,9 +30,9 @@ void MapManager::Update()
 			}
 		}
 		//Modelを作り直す
-	
 		MapManager::GetInstance()->block_.clear();
 		
+
 		const size_t NumZSize = MapManager::GetInstance()->nowMapData_.size();
 		MapManager::GetInstance()->block_.resize(NumZSize);
 
@@ -48,7 +48,6 @@ void MapManager::Update()
 
 				for (size_t x = 0; x < NumXSize; x++)
 				{
-					MapManager::GetInstance()->block_[z][y][x].model.release();
 					MapManager::GetInstance()->block_[z][y][x].model = make_unique<Model>();
 					MapManager::GetInstance()->block_[z][y][x].model->UseLight();
 					MapManager::GetInstance()->block_[z][y][x].model->SetModel(MapManager::GetInstance()->ModelHandle_);
@@ -63,6 +62,18 @@ void MapManager::Update()
 		MapManager::GetInstance()->prevSatge_ = MapManager::GetInstance()->nowStage_;
     }
 
+	ImGui::Begin("map");
+	ImGui::Text("%d,%d,%d", MapManager::GetInstance()->nowMapData_.size(),
+		MapManager::GetInstance()->nowMapData_[1].size(),
+		MapManager::GetInstance()->nowMapData_[1][1].size()
+	);
+	ImGui::Text("%d %d %d", MapManager::GetInstance()->block_.size(),
+		MapManager::GetInstance()->block_[1].size(),
+		MapManager::GetInstance()->block_[1][1].size()
+	);
+	ImGui::End();
+
+	
 
 	for (uint32_t z = 0; z < MapManager::GetInstance()->nowMapData_.size(); z++)
 	{
@@ -70,10 +81,9 @@ void MapManager::Update()
 		{
 			for (int x = 0; x < MapManager::GetInstance()->nowMapData_[z][y].size(); x++)
 			{
-				if (MapManager::GetInstance()->block_[z][y][x].worldTransform.BufferMatrix_ != nullptr)
-				{
-					MapManager::GetInstance()->block_[z][y][x].worldTransform.UpdateMatrix();
-				}
+			
+				MapManager::GetInstance()->block_[z][y][x].worldTransform.UpdateMatrix();
+				
 			}
 		}
 	}
@@ -164,6 +174,7 @@ void MapManager::FileLoad(string name)
 	}
 
 	MapManager::GetInstance()->mapDatas_[FileName] = make_unique<MapData>(stageNumber, ZNumNumber, maptip);
+	maptip.clear();
 }
 
 

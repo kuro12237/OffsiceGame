@@ -1,14 +1,14 @@
 #include "CreateResource.h"
 
-ComPtr<ID3D12Resource> CreateResources::CreateBufferResource(size_t sizeInbyte)
+ID3D12Resource* CreateResources::CreateBufferResource(size_t sizeInbyte)
 {
-	ComPtr<ID3D12Device> device = DirectXCommon::GetInstance()->GetDevice();
-    ComPtr<ID3D12Resource> result;
+	ID3D12Device* device = DirectXCommon::GetInstance()->GetDevice();
+    ID3D12Resource* result=nullptr;
 
 	D3D12_HEAP_PROPERTIES uploadHeapProperties{};
 	uploadHeapProperties.Type = D3D12_HEAP_TYPE_UPLOAD; //UploadHeap��g��
 
-	//���_���\�[�X�̐ݒ�
+	
 	D3D12_RESOURCE_DESC ResourceDesc{};
 	ResourceDesc.Dimension = D3D12_RESOURCE_DIMENSION_BUFFER;
 	ResourceDesc.Width = sizeInbyte; 
@@ -62,7 +62,7 @@ D3D12_VERTEX_BUFFER_VIEW CreateResources::VertexCreateBufferView(size_t sizeInby
 	return resultBufferView; 
 }
 
-D3D12_INDEX_BUFFER_VIEW CreateResources::IndexCreateBufferView(size_t sizeInbyte, ComPtr<ID3D12Resource> Resource)
+D3D12_INDEX_BUFFER_VIEW CreateResources::IndexCreateBufferView(size_t sizeInbyte,ID3D12Resource* Resource)
 {
 	D3D12_INDEX_BUFFER_VIEW resultBufferView = {};
 

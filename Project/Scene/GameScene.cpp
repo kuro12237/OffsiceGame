@@ -29,7 +29,7 @@ void GameScene::Initialize()
 
 void GameScene::Update(GameManager* Scene)
 {
-	MapManager::Update();
+	//MapManager::Update();
 	Scene;
 	ImGui::PushStyleColor(ImGuiCol_TitleBgActive, ImVec4(0.08f, 0.08f, 0.08f, 1.0f));
 	ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.02f, 0.02f, 0.02f, 1.0f));
@@ -52,7 +52,23 @@ void GameScene::Update(GameManager* Scene)
 	}
 	ImGui::End();
 
-	MapManager::SetNextMaptip(SelectStage_);
+	if (Input::PushKeyPressed(DIK_P))
+	{
+		MapManager::SetNextMaptip(2);
+	}
+	if (Input::PushKeyPressed(DIK_O))
+	{
+		MapManager::SetNextMaptip(1);
+
+	}
+	if (Input::PushKeyPressed(DIK_J))
+	{
+		skyBox_ = make_unique<SkyBox>();
+		skyBox_->Initialize();
+
+
+	}
+	//MapManager::SetNextMaptip(SelectStage_);
 
 
 	worldTransform_.UpdateMatrix();
@@ -75,7 +91,7 @@ void GameScene::Object3dDraw()
 
 	skyBox_->Draw(viewProjection_);
 	//model_->Draw(worldTransform_, viewProjection_);
-	MapManager::Draw(viewProjection_);
+	//MapManager::Draw(viewProjection_);
 }
 
 void GameScene::Flont2dSpriteDraw()

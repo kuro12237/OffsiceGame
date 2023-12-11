@@ -81,7 +81,7 @@ public:
 	/// <param name="device"></param>
 	/// <param name="sizeInbyte"></param>
 	/// <returns></returns>
-	static ComPtr<ID3D12Resource> CreateBufferResource(size_t sizeInbyte);
+	static ID3D12Resource* CreateBufferResource(size_t sizeInbyte);
 
 	static void CreateBufferResource(size_t sizeInbyte, ComPtr<ID3D12Resource> &Resource);
 
@@ -92,13 +92,13 @@ public:
 	/// <param name="sizeInbyte"></param>
 	/// <param name="Resource"></param>
 	/// <returns></returns>
-	static D3D12_VERTEX_BUFFER_VIEW VertexCreateBufferView(size_t sizeInbyte, ID3D12Resource* Resource, int size);
+	static D3D12_VERTEX_BUFFER_VIEW VertexCreateBufferView(size_t sizeInbyte,ID3D12Resource* Resource, int size);
 	/// <summary>
 	/// index��BufferView
 	/// </summary>
 	/// <param name="NumVertex"></param>
 	/// <returns></returns>
-	static D3D12_INDEX_BUFFER_VIEW IndexCreateBufferView(size_t sizeInbyte, ComPtr<ID3D12Resource> Resource);
+	static D3D12_INDEX_BUFFER_VIEW IndexCreateBufferView(size_t sizeInbyte,ID3D12Resource* Resource);
 
 private:
 

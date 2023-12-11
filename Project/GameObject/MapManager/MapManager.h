@@ -44,4 +44,6 @@ private:
 	map<string, unique_ptr<MapData>>mapDatas_;
 
 	uint32_t ModelHandle_ = 0;
+
+	bool flag = false;
 };

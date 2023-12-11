@@ -28,13 +28,12 @@ void Model::SetModel(uint32_t handle)
 
 	if (prevModelHandle_ != modelHandle_)
 	{
-		state_.release(); 
 		state_ = make_unique<ModelObjState>();
 		state_->Initialize(this);
 	}
 }
 
-void Model::Draw(WorldTransform worldTransform, ViewProjection viewprojection)
+void Model::Draw(const WorldTransform& worldTransform, const ViewProjection& viewprojection)
 {
 	if (state_ == nullptr)
 	{

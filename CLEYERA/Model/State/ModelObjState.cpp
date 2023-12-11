@@ -11,18 +11,19 @@ void ModelObjState::Initialize(Model* state)
 	ModelData_ = ModelManager::GetObjData(state->GetModelHandle());
 	state->SetTexHandle(ModelData_.material.handle);
 
-	CreateResources::CreateBufferResource(sizeof(VertexData) * ModelData_.vertices.size(),resource_.Vertex);
-    CreateResources::CreateBufferResource(sizeof(Material), resource_.Material);
+	resource_.Vertex = (CreateBufferResource(sizeof(VertexData) * ModelData_.vertices.size()));
+	resource_.Material = (CreateBufferResource(sizeof(Material)));
 
-	resource_.BufferView = CreateResources::VertexCreateBufferView(sizeof(VertexData) * ModelData_.vertices.size(), resource_.Vertex.Get(), int(ModelData_.vertices.size()));
+	resource_.BufferView = (CreateResources::VertexCreateBufferView(sizeof(VertexData) * ModelData_.vertices.size(), resource_.Vertex.Get(), int(ModelData_.vertices.size())));
 	if (state->GetUseLight())
-	{
-	    CreateResources::CreateBufferResource(sizeof(LightData), resource_.Light);
+	{	
+		resource_.Light = (CreateBufferResource(sizeof(LightData)));
 	}
+
 	ModelData_.vertices.clear();
 }
 
-void ModelObjState::Draw(Model* state, WorldTransform worldTransform, ViewProjection viewprojection)
+void ModelObjState::Draw(Model* state, const WorldTransform& worldTransform, const ViewProjection& viewprojection)
 {
 	VertexData* vertexData = nullptr;
 	Material* materialData = nullptr;
@@ -77,4 +78,29 @@ void ModelObjState::Draw(Model* state, WorldTransform worldTransform, ViewProjec
 
 	commands.m_pList->DrawInstanced(UINT(ModelData_.vertices.size()), 1, 0, 0);
 
+}
+
+ID3D12Resource* ModelObjState::CreateBufferResource(size_t sizeInbyte)
+{
+	ID3D12Device* device = DirectXCommon::GetInstance()->GetDevice();
+	ID3D12Resource* result = nullptr;
+
+	D3D12_HEAP_PROPERTIES uploadHeapProperties{};
+	uploadHeapProperties.Type = D3D12_HEAP_TYPE_UPLOAD;
+
+	D3D12_RESOURCE_DESC ResourceDesc{};
+	ResourceDesc.Dimension = D3D12_RESOURCE_DIMENSION_BUFFER;
+	ResourceDesc.Width = sizeInbyte;
+	ResourceDesc.Height = 1;
+	ResourceDesc.DepthOrArraySize = 1;
+	ResourceDesc.MipLevels = 1;
+	ResourceDesc.SampleDesc.Count = 1;
+	ResourceDesc.Layout = D3D12_TEXTURE_LAYOUT_ROW_MAJOR;
+
+	HRESULT hr = {};
+	hr = device->CreateCommittedResource(&uploadHeapProperties, D3D12_HEAP_FLAG_NONE,
+		&ResourceDesc, D3D12_RESOURCE_STATE_GENERIC_READ, nullptr, IID_PPV_ARGS(&result));
+	assert(SUCCEEDED(hr));
+
+	return result;
 }

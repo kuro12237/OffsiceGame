@@ -16,7 +16,7 @@ void ModelManager::Finalize()
 	ModelManager::GetInstance()->objModelDatas_.clear();
 }
 
-uint32_t ModelManager::LoadObjectFile(string directoryPath)
+uint32_t ModelManager::LoadObjectFile(const string &directoryPath)
 {
 	
 	if (ChackLoadObj(directoryPath))
@@ -85,7 +85,7 @@ uint32_t ModelManager::LoadObjectFile(string directoryPath)
 	return ModelManager::GetInstance()->objModelDatas_[directoryPath]->GetIndex();
 }
 
-SModelData ModelManager::GetObjData(uint32_t index)
+SModelData ModelManager::GetObjData(const uint32_t &index)
 {
 	SModelData data{};
 	for (const auto& [key, s] : ModelManager::GetInstance()->objModelDatas_)
@@ -95,14 +95,13 @@ SModelData ModelManager::GetObjData(uint32_t index)
 		{
 			data = s.get()->GetData();
 			return data;
-			break;
 		}
 	}
 
 	return data;
 }
 
-bool ModelManager::ChackLoadObj(string filePath)
+bool ModelManager::ChackLoadObj(const string &filePath)
 {
 	if (ModelManager::GetInstance()->objModelDatas_.find(filePath) == ModelManager::GetInstance()->objModelDatas_.end())
 	{
