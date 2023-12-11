@@ -1,9 +1,9 @@
 #include "CreateResource.h"
 
-ID3D12Resource* CreateResources::CreateBufferResource(size_t sizeInbyte)
+ComPtr<ID3D12Resource> CreateResources::CreateBufferResource(size_t sizeInbyte)
 {
 	ID3D12Device* device = DirectXCommon::GetInstance()->GetDevice();
-    ID3D12Resource* result=nullptr;
+    ComPtr<ID3D12Resource> result=nullptr;
 
 	D3D12_HEAP_PROPERTIES uploadHeapProperties{};
 	uploadHeapProperties.Type = D3D12_HEAP_TYPE_UPLOAD; //UploadHeap��g��
@@ -23,7 +23,7 @@ ID3D12Resource* CreateResources::CreateBufferResource(size_t sizeInbyte)
 		&ResourceDesc, D3D12_RESOURCE_STATE_GENERIC_READ, nullptr, IID_PPV_ARGS(&result));
 	assert(SUCCEEDED(hr));
 
-	return result;
+	return result.Get();
 }
 
 void CreateResources::CreateBufferResource(size_t sizeInbyte, ComPtr<ID3D12Resource>&Resource)

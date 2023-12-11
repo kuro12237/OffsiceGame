@@ -11,13 +11,13 @@ void ModelObjState::Initialize(Model* state)
 	ModelData_ = ModelManager::GetObjData(state->GetModelHandle());
 	state->SetTexHandle(ModelData_.material.handle);
 
-	resource_.Vertex = (CreateBufferResource(sizeof(VertexData) * ModelData_.vertices.size()));
-	resource_.Material = (CreateBufferResource(sizeof(Material)));
+	resource_.Vertex = (CreateResources::CreateBufferResource(sizeof(VertexData) * ModelData_.vertices.size()));
+	resource_.Material = (CreateResources::CreateBufferResource(sizeof(Material)));
 
 	resource_.BufferView = (CreateResources::VertexCreateBufferView(sizeof(VertexData) * ModelData_.vertices.size(), resource_.Vertex.Get(), int(ModelData_.vertices.size())));
 	if (state->GetUseLight())
 	{	
-		resource_.Light = (CreateBufferResource(sizeof(LightData)));
+		resource_.Light = (CreateResources::CreateBufferResource(sizeof(LightData)));
 	}
 
 	ModelData_.vertices.clear();
