@@ -6,7 +6,7 @@ void ModelSphereState::Initialize(Model* state)
 {
 	int v = VertexNum * VertexNum * 4;
 	resource_.Vertex = CreateResources::CreateBufferResource(sizeof(VertexData) * v);
-	resource_.Material = CreateResources::CreateBufferResource(sizeof(Material));
+	
 	resource_.BufferView = CreateResources::VertexCreateBufferView(sizeof(VertexData) * v, resource_.Vertex.Get(), v);
 	if (state->GetUseLight())
 	{
@@ -16,10 +16,34 @@ void ModelSphereState::Initialize(Model* state)
 	uint32_t i = VertexNum * VertexNum * 6;
 	resource_.Index = CreateResources::CreateBufferResource(sizeof(uint32_t) * i);
 	resource_.IndexBufferView = CreateResources::IndexCreateBufferView(sizeof(uint32_t) * i, resource_.Index.Get());
-	state;
 }
 
-void ModelSphereState::Draw(Model* state, const WorldTransform& worldTransform, const ViewProjection& viewprojection)
+void ModelSphereState::CallPipelinexVertex(Model* state)
+{
+	Commands commands = DirectXCommon::GetInstance()->GetCommands();
+	SPSOProperty PSO = {};
+
+
+	PSO = GraphicsPipelineManager::GetInstance()->GetPso().shape;
+
+	//テクスチャがある場合
+	if (!state->GetTexHandle() == 0) {
+		PSO = GraphicsPipelineManager::GetInstance()->GetPso().Sprite3d.none;
+	}
+	if (state->GetUseLight())
+	{
+		PSO = GraphicsPipelineManager::GetInstance()->GetPso().Lighting;
+	}
+	commands.m_pList->SetGraphicsRootSignature(PSO.rootSignature.Get());
+	commands.m_pList->SetPipelineState(PSO.GraphicsPipelineState.Get());
+
+	commands.m_pList->IASetVertexBuffers(0, 1, &resource_.BufferView);
+	commands.m_pList->IASetIndexBuffer(&resource_.IndexBufferView);
+
+	commands.m_pList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+}
+
+void ModelSphereState::Draw(Model* state,const ViewProjection& viewprojection)
 {
 	VertexData* vertexData = nullptr;
 	Material* materialData = nullptr;
@@ -115,7 +139,7 @@ void ModelSphereState::Draw(Model* state, const WorldTransform& worldTransform, 
 	materialData->color = state->GetColor();
 	materialData->shininess = shininess;
 	materialData->uvTransform = MatrixTransform::AffineMatrix(state->GetuvScale(), state->GetuvRotate(), state->GetuvTranslate());
-	if (state->GetUseLight()!=NONE)
+	if (state->GetUseLight())
 	{
 		LightData* lightData = nullptr;
 		resource_.Light->Map(0, nullptr, reinterpret_cast<void**>(&lightData));
@@ -128,39 +152,12 @@ void ModelSphereState::Draw(Model* state, const WorldTransform& worldTransform, 
 	}
 
 
-	CommandCall(state,worldTransform,viewprojection);
+	CommandCall(state,viewprojection);
 }
 
-void ModelSphereState::CommandCall(Model*state, const WorldTransform& worldTransform, const ViewProjection& viewprojection)
+void ModelSphereState::CommandCall(Model*state, const ViewProjection& viewprojection)
 {
-
 	Commands commands = DirectXCommon::GetInstance()->GetCommands();
-	SPSOProperty PSO = {};
-
-	
-	PSO = GraphicsPipelineManager::GetInstance()->GetPso().shape;
-
-	//テクスチャがある場合
-	if (!state->GetTexHandle() == 0) {
-		PSO = GraphicsPipelineManager::GetInstance()->GetPso().Sprite3d.none;
-	}
-	if (state->GetUseLight())
-	{
-		PSO = GraphicsPipelineManager::GetInstance()->GetPso().Lighting;
-	}
-	commands.m_pList->SetGraphicsRootSignature(PSO.rootSignature.Get());
-	commands.m_pList->SetPipelineState(PSO.GraphicsPipelineState.Get());
-
-	commands.m_pList->IASetVertexBuffers(0, 1, &resource_.BufferView);
-	commands.m_pList->IASetIndexBuffer(&resource_.IndexBufferView);
-
-	commands.m_pList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-
-	commands.m_pList->SetGraphicsRootConstantBufferView(0, resource_.Material->GetGPUVirtualAddress());
-
-	commands.m_pList->SetGraphicsRootConstantBufferView(1, worldTransform.buffer_->GetGPUVirtualAddress());
-
-	commands.m_pList->SetGraphicsRootConstantBufferView(2, viewprojection.buffer_->GetGPUVirtualAddress());
 
 	if (!state->GetTexHandle() == 0)
 	{

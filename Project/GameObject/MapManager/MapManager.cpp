@@ -48,8 +48,9 @@ void MapManager::Update()
 
 				for (size_t x = 0; x < NumXSize; x++)
 				{
-					MapManager::GetInstance()->block_[z][y][x].model = make_unique<Model>();
-					MapManager::GetInstance()->block_[z][y][x].model->UseLight();
+					MapManager::GetInstance()->block_[z][y][x].model = make_unique<Game3dObject>();
+					MapManager::GetInstance()->block_[z][y][x].model->UseLight(true);
+					MapManager::GetInstance()->block_[z][y][x].model->Create();
 					MapManager::GetInstance()->block_[z][y][x].model->SetModel(MapManager::GetInstance()->ModelHandle_);
 					MapManager::GetInstance()->block_[z][y][x].worldTransform.Initialize();
 					MapManager::GetInstance()->block_[z][y][x].worldTransform.scale = { 0.5f,0.5f,0.5f };

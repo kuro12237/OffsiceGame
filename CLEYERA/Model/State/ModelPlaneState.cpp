@@ -7,14 +7,36 @@
 void ModelPlaneState::Initialize(Model* state)
 {
 	resource_.Vertex = CreateResources::CreateBufferResource(sizeof(VertexData) * VertexSize);
-	resource_.Material = CreateResources::CreateBufferResource(sizeof(Material));
+
 	resource_.BufferView = CreateResources::VertexCreateBufferView(sizeof(VertexData) * VertexSize, resource_.Vertex.Get(), VertexSize);
 	resource_.Index = CreateResources::CreateBufferResource(sizeof(uint32_t) * IndexSize);
 	resource_.IndexBufferView = CreateResources::IndexCreateBufferView(sizeof(uint32_t) * IndexSize, resource_.Index.Get());
 	state;
 }
 
-void ModelPlaneState::Draw(Model* state, const WorldTransform& worldTransform, const ViewProjection& viewprojection)
+void ModelPlaneState::CallPipelinexVertex(Model* state)
+{
+	state;
+	Commands commands = DirectXCommon::GetInstance()->GetCommands();
+
+	SPSOProperty PSO = {};
+
+	PSO = GraphicsPipelineManager::GetInstance()->GetPso().Sprite3d.none;
+	
+
+
+	commands.m_pList->SetGraphicsRootSignature(PSO.rootSignature.Get());
+	commands.m_pList->SetPipelineState(PSO.GraphicsPipelineState.Get());
+
+	commands.m_pList->IASetVertexBuffers(0, 1, &resource_.BufferView);
+	commands.m_pList->IASetIndexBuffer(&resource_.IndexBufferView);
+
+
+	commands.m_pList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+}
+
+void ModelPlaneState::Draw(Model* state, const ViewProjection& viewprojection)
 {
 	VertexData* vertexData = nullptr;
 	Material* materialData = nullptr;
@@ -54,37 +76,14 @@ void ModelPlaneState::Draw(Model* state, const WorldTransform& worldTransform, c
 	materialData->uvTransform = MatrixTransform::AffineMatrix(state->GetuvScale(), state->GetuvRotate(), state->GetuvTranslate());
 
 
-	CommandCall(state->GetTexHandle(),worldTransform,viewprojection);
+	CommandCall(state->GetTexHandle(),viewprojection);
 
 }
 
-void ModelPlaneState::CommandCall(uint32_t texHandle, const WorldTransform& worldTransform, const ViewProjection& viewprojection)
+void ModelPlaneState::CommandCall(uint32_t texHandle,const ViewProjection& viewprojection)
 {
 	Commands commands = DirectXCommon::GetInstance()->GetCommands();
 	
-	SPSOProperty PSO = {};
-	
-	if (texHandle==0)
-	{
-		PSO = GraphicsPipelineManager::GetInstance()->GetPso().shape;
-	}else if (!texHandle == 0)
-	{
-		PSO = GraphicsPipelineManager::GetInstance()->GetPso().Sprite3d.none;
-	}
-
-	
-	commands.m_pList->SetGraphicsRootSignature(PSO.rootSignature.Get());
-	commands.m_pList->SetPipelineState(PSO.GraphicsPipelineState.Get());
-
-	commands.m_pList->IASetVertexBuffers(0, 1, &resource_.BufferView);
-	commands.m_pList->IASetIndexBuffer(&resource_.IndexBufferView);
-
-	
-	commands.m_pList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-
-
-	commands.m_pList->SetGraphicsRootConstantBufferView(0, resource_.Material->GetGPUVirtualAddress());
-	commands.m_pList->SetGraphicsRootConstantBufferView(1, worldTransform.buffer_->GetGPUVirtualAddress());
 	commands.m_pList->SetGraphicsRootConstantBufferView(2, viewprojection.buffer_->GetGPUVirtualAddress());
 
 	if (!texHandle==0)

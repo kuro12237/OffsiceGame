@@ -12,13 +12,9 @@ public:
 	~ModelObjState() ;
 
 	void Initialize(Model* state)override;
-
-	void Draw(Model* state, const WorldTransform& worldTransform, const ViewProjection& viewprojection)override;
+	void CallPipelinexVertex(Model* state)override;
+	void Draw(Model* state,const ViewProjection& viewprojection)override;
 
 private:
-
-    ID3D12Resource* CreateBufferResource(size_t sizeInbyte);
-
 	ResourcePeroperty resource_ = {};
-	Vector3 testLightDirection = { 0,-1.0f,0 };
 };

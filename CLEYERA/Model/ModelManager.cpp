@@ -16,7 +16,7 @@ void ModelManager::Finalize()
 	ModelManager::GetInstance()->objModelDatas_.clear();
 }
 
-uint32_t ModelManager::LoadObjectFile(const string &directoryPath)
+uint32_t ModelManager::LoadObjectFile(string directoryPath)
 {
 	
 	if (ChackLoadObj(directoryPath))
@@ -77,7 +77,10 @@ uint32_t ModelManager::LoadObjectFile(const string &directoryPath)
 		uint32_t texHandle = TextureManager::LoadTexture(modelData.material.textureFilePath);
 		modelData.material.handle = texHandle;
 
-		ModelManager::GetInstance()->objModelDatas_[directoryPath] = make_unique<ModelObjData>(modelData, modelHandle);
+		unique_ptr<Model>model = make_unique <Model>();
+		//model->UseLight();
+		model->CreateObj(modelData);
+		ModelManager::GetInstance()->objModelDatas_[directoryPath] = make_unique<ModelObjData>(modelData, modelHandle,move(model));
 
 		return modelHandle;
 	}
@@ -85,15 +88,15 @@ uint32_t ModelManager::LoadObjectFile(const string &directoryPath)
 	return ModelManager::GetInstance()->objModelDatas_[directoryPath]->GetIndex();
 }
 
-SModelData ModelManager::GetObjData(const uint32_t &index)
+SModelData ModelManager::GetObjData(uint32_t index)
 {
 	SModelData data{};
 	for (const auto& [key, s] : ModelManager::GetInstance()->objModelDatas_)
 	{
-		key;
 		if (s.get()->GetIndex() == index)
 		{
 			data = s.get()->GetData();
+			//data.filePath = key;
 			return data;
 		}
 	}
@@ -101,7 +104,22 @@ SModelData ModelManager::GetObjData(const uint32_t &index)
 	return data;
 }
 
-bool ModelManager::ChackLoadObj(const string &filePath)
+Model* ModelManager::GetModel(uint32_t index)
+{
+	Model *data =nullptr;
+	for (const auto& [key, s] : ModelManager::GetInstance()->objModelDatas_)
+	{
+		if (s.get()->GetIndex() == index)
+		{
+			data = s.get()->GetModel();
+			return data;
+		}
+	}
+
+	return nullptr;
+}
+
+bool ModelManager::ChackLoadObj(string filePath)
 {
 	if (ModelManager::GetInstance()->objModelDatas_.find(filePath) == ModelManager::GetInstance()->objModelDatas_.end())
 	{

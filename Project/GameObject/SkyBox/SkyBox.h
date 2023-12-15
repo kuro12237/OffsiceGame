@@ -1,5 +1,5 @@
 #pragma once
-#include"Model.h"
+#include"Game3dObject.h"
 
 class SkyBox
 {
@@ -17,7 +17,7 @@ public:
 private:
 
 	WorldTransform worldTransform_ = {};
-	unique_ptr<Model>model_ = nullptr;
+	unique_ptr<Game3dObject>model_ = nullptr;
 
 
 };
