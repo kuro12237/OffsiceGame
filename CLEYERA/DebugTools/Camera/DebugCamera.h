@@ -5,6 +5,9 @@
 #include"Input.h"
 #include"MatrixTransform.h"
 #include"DebugTools/DebugTools.h"
+#include"VectorTransform.h"
+
+#include"WorldTransform.h"
 
 class DebugCamera : public ICommand
 {

@@ -1,9 +1,9 @@
 #pragma once
-#include"Model.h"
+#include"Game3dObject.h"
 
 struct Block_param
 {
-	unique_ptr<Model>model = nullptr;
+	unique_ptr<Game3dObject>model = nullptr;
 	WorldTransform worldTransform;
 };
 

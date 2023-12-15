@@ -1,6 +1,8 @@
 #include "Model.h"
 
-
+Model::~Model()
+{
+}
 
 void Model::CreateModel(unique_ptr<IModelState> state, Vector4 CenterPos , float size , Vector4 color)
 {
@@ -8,13 +10,13 @@ void Model::CreateModel(unique_ptr<IModelState> state, Vector4 CenterPos , float
 	size_ = size;
 	color_ = color;
 
-	state_.swap(state);
+	state_=move(state);
 	state_->Initialize(this);
 }
 
 void Model::CreateLine(unique_ptr<IModelState> state,Vector4 StartPosition, Vector4 EndPosition, Vector4 Color)
 {
-	state_.swap(state);
+	state_=move(state);
 	StartPos_ = StartPosition;
 	EndPos_ = EndPosition;
 	color_ = Color;
@@ -28,12 +30,24 @@ void Model::SetModel(uint32_t handle)
 
 	if (prevModelHandle_ != modelHandle_)
 	{
-		state_ = make_unique<ModelObjState>();
+		state_=make_unique<ModelObjState>();
 		state_->Initialize(this);
 	}
 }
 
-void Model::Draw(const WorldTransform& worldTransform, const ViewProjection& viewprojection)
+void Model::CreateObj(SModelData modeldata)
+{
+	state_ = make_unique<ModelObjState>();
+	modelData_ = modeldata;
+	state_->Initialize(this);
+}
+
+void Model::CommandCallPipelineVertex()
+{
+	state_->CallPipelinexVertex(this);
+}
+
+void Model::Draw(const ViewProjection& viewprojection)
 {
 	if (state_ == nullptr)
 	{
@@ -41,16 +55,8 @@ void Model::Draw(const WorldTransform& worldTransform, const ViewProjection& vie
 		assert(0);
 	}
 	
-	state_->Draw(this, worldTransform,viewprojection);
+	state_->Draw(this,viewprojection);
 }
 
-Vector4 Model::ColorConversion(uint32_t rgbaValue)
-{
-	Vector4 result = {};
-	result.x = ((rgbaValue >> 24) & 0xFF) / 255.0f; // Red
-	result.y = ((rgbaValue >> 16) & 0xFF) / 255.0f; // Green
-	result.z = ((rgbaValue >> 8) & 0xFF) / 255.0f;  // Blue
-	result.w = (rgbaValue & 0xFF) / 255.0f;         // Alpha
-	return result;
-}
+
 

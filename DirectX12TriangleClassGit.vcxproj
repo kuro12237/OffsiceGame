@@ -38,7 +38,6 @@
     <ClCompile Include="CLEYERA\CreateResource\CreateResource.cpp" />
     <ClCompile Include="CLEYERA\DebugTools\Camera\DebugCamera.cpp" />
     <ClCompile Include="CLEYERA\DebugTools\DebugTools.cpp" />
-    <ClCompile Include="CLEYERA\DebugTools\Grid\Grid.cpp" />
     <ClCompile Include="CLEYERA\Graphics\DescripterManager\DescriptorManager.cpp" />
     <ClCompile Include="CLEYERA\Graphics\PipelineManager\GraphicsPipelineManager.cpp" />
     <ClCompile Include="CLEYERA\Graphics\ShaderManager\ShaderManager.cpp" />
@@ -50,9 +49,9 @@
     <ClCompile Include="CLEYERA\math\MatrixTransform.cpp" />
     <ClCompile Include="CLEYERA\math\Quaternion\QuaternionTransform.cpp" />
     <ClCompile Include="CLEYERA\math\VectorTransform.cpp" />
+    <ClCompile Include="CLEYERA\Model\Game3dObject.cpp" />
     <ClCompile Include="CLEYERA\Model\Model.cpp" />
     <ClCompile Include="CLEYERA\Model\ModelManager.cpp" />
-    <ClCompile Include="CLEYERA\Model\State\ModelCubeState.cpp" />
     <ClCompile Include="CLEYERA\Model\State\ModelLineState.cpp" />
     <ClCompile Include="CLEYERA\Model\State\ModelObjState.cpp" />
     <ClCompile Include="CLEYERA\Model\State\ModelPlaneState.cpp" />
@@ -73,7 +72,6 @@
     <ClCompile Include="Project\GameObject\MapManager\MapManager.cpp" />
     <ClCompile Include="Project\GameObject\SkyBox\SkyBox.cpp" />
     <ClCompile Include="Project\GameObject\Sun\Sun.cpp" />
-    <ClCompile Include="Project\Scene\DebugScene.cpp" />
     <ClCompile Include="Project\Scene\GameScene.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -86,7 +84,6 @@
     <ClInclude Include="CLEYERA\DebugTools\Camera\DebugCamera.h" />
     <ClInclude Include="CLEYERA\DebugTools\Commands\ICommand.h" />
     <ClInclude Include="CLEYERA\DebugTools\DebugTools.h" />
-    <ClInclude Include="CLEYERA\DebugTools\Grid\Grid.h" />
     <ClInclude Include="CLEYERA\Graphics\DescripterManager\DescriptorManager.h" />
     <ClInclude Include="CLEYERA\Graphics\PipelineManager\GraphicsPipelineManager.h" />
     <ClInclude Include="CLEYERA\Graphics\ShaderManager\ShaderManager.h" />
@@ -105,10 +102,10 @@
     <ClInclude Include="CLEYERA\math\Vector3.h" />
     <ClInclude Include="CLEYERA\math\Vector4.h" />
     <ClInclude Include="CLEYERA\math\VectorTransform.h" />
+    <ClInclude Include="CLEYERA\Model\Game3dObject.h" />
     <ClInclude Include="CLEYERA\Model\Model.h" />
     <ClInclude Include="CLEYERA\Model\ModelManager.h" />
     <ClInclude Include="CLEYERA\Model\State\IModelState.h" />
-    <ClInclude Include="CLEYERA\Model\State\ModelCubeState.h" />
     <ClInclude Include="CLEYERA\Model\State\ModelLineState.h" />
     <ClInclude Include="CLEYERA\Model\State\ModelObjData.h" />
     <ClInclude Include="CLEYERA\Model\State\ModelObjState.h" />
@@ -136,7 +133,6 @@
     <ClInclude Include="Project\GameObject\MapManager\MapManager.h" />
     <ClInclude Include="Project\GameObject\SkyBox\SkyBox.h" />
     <ClInclude Include="Project\GameObject\Sun\Sun.h" />
-    <ClInclude Include="Project\Scene\DebugScene.h" />
     <ClInclude Include="Project\Scene\GameScene.h" />
     <ClInclude Include="Project\Scene\IScene.h" />
   </ItemGroup>

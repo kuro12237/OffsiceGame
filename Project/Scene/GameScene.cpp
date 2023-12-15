@@ -2,25 +2,18 @@
 
 void GameScene::Initialize()
 {
-	Grid* grid = new Grid();
-	grid->Initialize();
-	DebugTools::addCommand(grid, "grid");
 
 	//cameraSetting
 	viewProjection_.Initialize();
 	viewProjection_.translation_ = { 0.0f,3.0f,-16.0f };
 	viewProjection_.UpdateMatrix();
 
-	uint32_t modelHandle = ModelManager::LoadObjectFile("TestWoodBlock");
 
 	skyBox_ = make_unique<SkyBox>();
 	skyBox_->Initialize();
 
 	sun_ = make_unique<Sun>();
 	sun_->Initialize();
-
-	model_ = make_unique<Model>();
-	model_->SetModel(modelHandle);
 
 	worldTransform_.Initialize();
 
@@ -76,9 +69,8 @@ void GameScene::Update(GameManager* Scene)
 	sun_->Update();
 	skyBox_->Update();
 
-	DebugTools::UpdateExecute(0);
 	viewProjection_.UpdateMatrix();
-	viewProjection_ = DebugTools::ConvertViewProjection(viewProjection_);
+
 }
 
 void GameScene::Back2dSpriteDraw()
@@ -87,10 +79,8 @@ void GameScene::Back2dSpriteDraw()
 
 void GameScene::Object3dDraw()
 {
-	DebugTools::DrawExecute(0);
 
 	skyBox_->Draw(viewProjection_);
-	//model_->Draw(worldTransform_, viewProjection_);
 	MapManager::Draw(viewProjection_);
 }
 

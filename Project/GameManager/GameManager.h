@@ -1,7 +1,7 @@
 #pragma once
 #include"Cleyera.h"
 #include"IScene.h"
-#include"DebugScene.h"
+
 #include"GameScene.h"
 
 #include"../DebugTools/Camera/DebugCamera.h"

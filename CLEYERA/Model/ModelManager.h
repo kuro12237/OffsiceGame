@@ -7,7 +7,6 @@ class ModelManager
 {
 public:
 	
-
 	static ModelManager* GetInstance();
 
 	static void Initialize();
@@ -19,16 +18,18 @@ public:
 	/// </summary>
 	/// <param name="Modelfileの中のファイル名"></param>
 	/// <returns></returns>
-	static  uint32_t LoadObjectFile(const string &directoryPath);
+	static uint32_t LoadObjectFile(string directoryPath);
 
 	/// <summary>
 	/// ハンドルのobjデータのGet
 	/// </summary>
-	static SModelData GetObjData(const uint32_t &index);
+	static SModelData GetObjData(uint32_t index);
+
+	static Model* GetModel(uint32_t index);
 
 private:
 	
-	static bool ChackLoadObj(const string &filePath);
+	static bool ChackLoadObj(string filePath);
 
 	map<string,unique_ptr<ModelObjData>>objModelDatas_;
 	uint32_t objHandle_ = 0;
