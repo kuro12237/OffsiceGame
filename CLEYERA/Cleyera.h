@@ -4,7 +4,6 @@
 #include"DirectXCommon.h"
 #include"ShaderManager.h"
 #include"GraphicsPipelineManager.h"
-#include"Model.h"
 #include"ImGuiManager.h"
 #include"DebugTools/DebugTools.h"
 #include"Graphics/TextureManager/TextureManager.h"
@@ -13,7 +12,7 @@
 #include"AudioManager.h"
 #include"Graphics/DescripterManager/DescriptorManager.h"
 #include"Light/LightingManager.h"
-
+#include"ModelManager.h"
 #ifdef _DEBUG
  
 #define BuildMode "Debug"

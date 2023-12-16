@@ -13,6 +13,10 @@
 #include"GameObject/MapManager/MapManager.h"
 #include"Light/LightingManager.h"
 #include"GameObject/Sun/Sun.h"
+#include"GameObject/MapManager/MapObject.h"
+
+#include"Scene/SelectScene.h"
+
 class GameScene :public IScene
 {
 public:
@@ -32,11 +36,8 @@ private:
 
 	ViewProjection viewProjection_{};
 
-	unique_ptr<Model>model_ = nullptr;
-	WorldTransform worldTransform_{};
-
 	unique_ptr<SkyBox>skyBox_ = nullptr;
 	unique_ptr<Sun>sun_ = nullptr;
 	int SelectStage_ = 1;
-
+	unique_ptr<MapObject>mapObject_ = nullptr;
 };

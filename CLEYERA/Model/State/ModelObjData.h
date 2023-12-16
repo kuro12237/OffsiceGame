@@ -7,24 +7,23 @@ class ModelObjData
 {
 public:
 	
-	ModelObjData(SModelData modelData, uint32_t index, unique_ptr<Model> model) {
+	ModelObjData(SModelData modelData, uint32_t index, Model* model) {
 		modelData_ = modelData,
 			index_ = index;
 		model_ = move(model);
 	}
 
-
-	~ModelObjData() {};
+	~ModelObjData() { delete model_; }
 
 	SModelData GetData() { return modelData_; }
-	Model* GetModel() { return model_.get(); }
+    Model* GetModel() { return model_;}
 
 	uint32_t GetIndex() { return index_; }
 
 
 private:
 
-	unique_ptr<Model>model_;
+	Model * model_;
 	SModelData modelData_;
 	uint32_t index_;
 };

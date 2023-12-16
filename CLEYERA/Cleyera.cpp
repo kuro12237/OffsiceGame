@@ -26,6 +26,7 @@ void Cleyera::Initialize()
 void Cleyera::Finalize()
 {
 	ModelManager::Finalize();
+	LightingManager::ClearList();
 	DebugTools::ClearCommand();
 	AudioManager::Finalize();
 	TextureManager::Finalize();

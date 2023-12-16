@@ -2,7 +2,7 @@
 
 void Game3dObject::Create()
 {
-	MaterialBuffer_ = CreateResources::CreateBufferResource(sizeof(Material));
+	MaterialBuffer_ = (CreateBufferResource(sizeof(Material)));
 }
 
 void Game3dObject::SetModel(uint32_t index)
@@ -22,9 +22,6 @@ void Game3dObject::Draw(WorldTransform worldTransform ,ViewProjection view)
 		return;
 	}
 
-
-	model_->UseLight(UseLight_);
-
 	Material * materialData;
 	MaterialBuffer_->Map(0, nullptr, reinterpret_cast<void**>(&materialData));
 	materialData->shininess = shininess;
@@ -32,14 +29,12 @@ void Game3dObject::Draw(WorldTransform worldTransform ,ViewProjection view)
 	materialData->uvTransform = MatrixTransform::AffineMatrix(uvScale_, uvRotate, uvTranslate);
 
 
-	model_->CommandCallPipelineVertex();
-
+	model_->CommandCallPipelineVertex(true);
 	Commands command = DirectXCommon::GetInstance()->GetCommands();
 
 	command.m_pList->SetGraphicsRootConstantBufferView(0, MaterialBuffer_->GetGPUVirtualAddress());
 	command.m_pList->SetGraphicsRootConstantBufferView(1, worldTransform.buffer_->GetGPUVirtualAddress());
 	command.m_pList->SetGraphicsRootConstantBufferView(2, view.buffer_->GetGPUVirtualAddress());
 	DescriptorManager::rootParamerterCommand(3, texHandle_);
-	
 	model_->Draw(view);
 }

@@ -3,8 +3,9 @@
 GameManager::GameManager()
 {
 	Cleyera::Initialize();
-	Scene_ = new GameScene();
+	Scene_ = new SelectScene();
 	Scene_->Initialize();
+	MapManager::Initialize();
 }
 
 GameManager::~GameManager()

@@ -4,58 +4,61 @@ Model::~Model()
 {
 }
 
-void Model::CreateModel(unique_ptr<IModelState> state, Vector4 CenterPos , float size , Vector4 color)
-{
-	CenterPos_ = CenterPos;
-	size_ = size;
-	color_ = color;
-
-	state_=move(state);
-	state_->Initialize(this);
-}
-
-void Model::CreateLine(unique_ptr<IModelState> state,Vector4 StartPosition, Vector4 EndPosition, Vector4 Color)
-{
-	state_=move(state);
-	StartPos_ = StartPosition;
-	EndPos_ = EndPosition;
-	color_ = Color;
-	state_->Initialize(this);
-}
-
-void Model::SetModel(uint32_t handle)
-{
-	prevModelHandle_ = modelHandle_;
-	modelHandle_ = handle;
-
-	if (prevModelHandle_ != modelHandle_)
-	{
-		state_=make_unique<ModelObjState>();
-		state_->Initialize(this);
-	}
-}
 
 void Model::CreateObj(SModelData modeldata)
 {
-	state_ = make_unique<ModelObjState>();
 	modelData_ = modeldata;
-	state_->Initialize(this);
+
+	buffer_ = CreateBufferResource(
+		sizeof(VertexData) * modelData_.vertices.size());
+
+	BufferView =
+		CreateResources::VertexCreateBufferView(
+			sizeof(VertexData) * modelData_.vertices.size(),
+			buffer_.Get(),
+			int(modelData_.vertices.size()
+				));
 }
 
-void Model::CommandCallPipelineVertex()
+void Model::CommandCallPipelineVertex(bool LightingFlag)
 {
-	state_->CallPipelinexVertex(this);
+	Commands commands = DirectXCommon::GetInstance()->GetCommands();
+	SPSOProperty PSO = GraphicsPipelineManager::GetInstance()->GetPso().Sprite3d.none;
+	LightingFlag_ = LightingFlag;
+	if (LightingFlag_)
+	{
+		PSO = GraphicsPipelineManager::GetInstance()->GetPso().Lighting;
+	}
+
+	commands.m_pList->SetGraphicsRootSignature(PSO.rootSignature.Get());
+	commands.m_pList->SetPipelineState(PSO.GraphicsPipelineState.Get());
+
+	commands.m_pList->IASetVertexBuffers(0, 1, &BufferView);
+
+	commands.m_pList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 }
 
 void Model::Draw(const ViewProjection& viewprojection)
 {
-	if (state_ == nullptr)
-	{
-		LogManager::Log("None SetModel\n");
-		assert(0);
-	}
+
+	VertexData* vertexData = nullptr;
 	
-	state_->Draw(this,viewprojection);
+	buffer_->Map(0, nullptr, reinterpret_cast<void**>(&vertexData));
+
+	memcpy(vertexData, modelData_.vertices.data(), sizeof(VertexData) * modelData_.vertices.size());
+	Commands commands = DirectXCommon::GetInstance()->GetCommands();
+
+	
+	if (LightingFlag_)
+	{
+		commands.m_pList->SetGraphicsRootConstantBufferView(4, viewprojection.buffer_->GetGPUVirtualAddress());
+		DescriptorManager::rootParamerterCommand(5, LightingManager::dsvHandle());
+		commands.m_pList->SetGraphicsRootConstantBufferView(6, LightingManager::GetBuffer()->GetGPUVirtualAddress());
+
+	}
+
+	commands.m_pList->DrawInstanced(UINT(modelData_.vertices.size()), 1, 0, 0);
+	
 }
 
 

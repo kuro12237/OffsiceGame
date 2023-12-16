@@ -67,6 +67,7 @@ struct  Material
 	Matrix4x4 uvTransform;
 	float shininess;
 };
+ComPtr<ID3D12Resource> CreateBufferResource(size_t sizeInbyte);
 
 class CreateResources
 {
@@ -81,7 +82,7 @@ public:
 	/// <param name="device"></param>
 	/// <param name="sizeInbyte"></param>
 	/// <returns></returns>
-	static ComPtr<ID3D12Resource> CreateBufferResource(size_t sizeInbyte);
+	static ID3D12Resource* CreateBufferResource(size_t sizeInbyte);
 
 	static void CreateBufferResource(size_t sizeInbyte, ComPtr<ID3D12Resource> &Resource);
 

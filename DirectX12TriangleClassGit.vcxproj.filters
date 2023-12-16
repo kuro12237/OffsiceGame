@@ -109,9 +109,6 @@
     <Filter Include="Project\GameObject">
       <UniqueIdentifier>{87e2db38-109f-4101-b6bd-93d041c05a8f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Project\GameObject\MapManager">
-      <UniqueIdentifier>{9d8ae1d6-4171-4f33-be10-7318d85fa3d8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Project\GameObject\SkyBox">
       <UniqueIdentifier>{95217f71-4fdf-4170-82ca-869e400c2ad7}</UniqueIdentifier>
     </Filter>
@@ -127,8 +124,14 @@
     <Filter Include="CLEYERA\Models\CreateResource">
       <UniqueIdentifier>{508999da-fe71-4022-a8ab-7e84d14adaf9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="CLEYERA\Models\state">
-      <UniqueIdentifier>{000a6de3-f7f4-4648-a4b4-776f10012b9b}</UniqueIdentifier>
+    <Filter Include="Project\GameObject\Map">
+      <UniqueIdentifier>{5a70197e-6128-4f57-8887-85974e1520f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\GameObject\Map\MapManager">
+      <UniqueIdentifier>{9d8ae1d6-4171-4f33-be10-7318d85fa3d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\GameObject\Map\Draw">
+      <UniqueIdentifier>{cbbb6dc0-7761-4180-b650-1fb373490df4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -250,7 +253,7 @@
       <Filter>Project\GameObject\SkyBox</Filter>
     </ClCompile>
     <ClCompile Include="Project\GameObject\MapManager\MapManager.cpp">
-      <Filter>Project\GameObject\MapManager</Filter>
+      <Filter>Project\GameObject\Map\MapManager</Filter>
     </ClCompile>
     <ClCompile Include="Project\GameObject\Sun\Sun.cpp">
       <Filter>Project\GameObject\Sun</Filter>
@@ -267,17 +270,11 @@
     <ClCompile Include="CLEYERA\Model\ModelManager.cpp">
       <Filter>CLEYERA\Models</Filter>
     </ClCompile>
-    <ClCompile Include="CLEYERA\Model\State\ModelLineState.cpp">
-      <Filter>CLEYERA\Models\state</Filter>
+    <ClCompile Include="Project\GameObject\MapManager\MapObject.cpp">
+      <Filter>Project\GameObject\Map\Draw</Filter>
     </ClCompile>
-    <ClCompile Include="CLEYERA\Model\State\ModelObjState.cpp">
-      <Filter>CLEYERA\Models\state</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\Model\State\ModelPlaneState.cpp">
-      <Filter>CLEYERA\Models\state</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\Model\State\ModelSphereState.cpp">
-      <Filter>CLEYERA\Models\state</Filter>
+    <ClCompile Include="Project\Scene\SelectScene.cpp">
+      <Filter>Project\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -420,13 +417,13 @@
       <Filter>Project\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Project\GameObject\MapManager\MapManager.h">
-      <Filter>Project\GameObject\MapManager</Filter>
+      <Filter>Project\GameObject\Map\MapManager</Filter>
     </ClInclude>
     <ClInclude Include="Project\GameObject\SkyBox\SkyBox.h">
       <Filter>Project\GameObject\SkyBox</Filter>
     </ClInclude>
     <ClInclude Include="Project\GameObject\MapManager\MapData.h">
-      <Filter>Project\GameObject\MapManager</Filter>
+      <Filter>Project\GameObject\Map\MapManager</Filter>
     </ClInclude>
     <ClInclude Include="Project\GameObject\Sun\Sun.h">
       <Filter>Project\GameObject\Sun</Filter>
@@ -443,23 +440,14 @@
     <ClInclude Include="CLEYERA\Model\ModelManager.h">
       <Filter>CLEYERA\Models</Filter>
     </ClInclude>
-    <ClInclude Include="CLEYERA\Model\State\IModelState.h">
-      <Filter>CLEYERA\Models\state</Filter>
+    <ClInclude Include="Project\GameObject\MapManager\MapObject.h">
+      <Filter>Project\GameObject\Map\Draw</Filter>
     </ClInclude>
-    <ClInclude Include="CLEYERA\Model\State\ModelLineState.h">
-      <Filter>CLEYERA\Models\state</Filter>
+    <ClInclude Include="Project\Scene\SelectScene.h">
+      <Filter>Project\Scene</Filter>
     </ClInclude>
     <ClInclude Include="CLEYERA\Model\State\ModelObjData.h">
-      <Filter>CLEYERA\Models\state</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Model\State\ModelObjState.h">
-      <Filter>CLEYERA\Models\state</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Model\State\ModelPlaneState.h">
-      <Filter>CLEYERA\Models\state</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Model\State\ModelSphereState.h">
-      <Filter>CLEYERA\Models\state</Filter>
+      <Filter>CLEYERA\Models</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

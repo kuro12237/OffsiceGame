@@ -1,11 +1,5 @@
 #pragma once
-#include"Game3dObject.h"
-
-struct Block_param
-{
-	unique_ptr<Game3dObject>model = nullptr;
-	WorldTransform worldTransform;
-};
+#include"WorldTransform.h"
 
 class MapData
 {

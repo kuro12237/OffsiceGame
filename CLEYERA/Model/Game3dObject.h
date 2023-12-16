@@ -32,12 +32,16 @@ public:
 
 private:
 
-	Model *model_ = nullptr;
+	Model* model_ = nullptr;
 	uint32_t prevModelIndex_ = 0;
+	uint32_t MOdelIndex_ = 0;
 
 	ComPtr<ID3D12Resource> MaterialBuffer_ = nullptr;
+
+
 	Vector4 color_ = { 1,1,1,1 };
 	
+
 	Vector3 uvScale_ = { 1,1,1 };
 	Vector3 uvRotate = { 0,0,0 };
 	Vector3 uvTranslate = { 0,0,0 };

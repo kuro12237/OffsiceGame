@@ -18,11 +18,12 @@ public:
 
 	static void Update();
 
-	static void Draw(ViewProjection view);
 
 	static void SetNextMaptip(uint32_t next);
 
 	static uint32_t GetNowstageMapTip() { return MapManager::GetInstance()->nowStage_; };
+
+	static 	vector<vector<vector<uint32_t>>> GetMapData() { return MapManager::GetInstance()->nowMapData_; }
 
 private:
 
@@ -33,7 +34,6 @@ private:
 	uint32_t nowStage_ = 1;
 	uint32_t prevSatge_ = 0;
 
-	vector<vector<vector<Block_param>>>block_ = {};
 	/// <summary>
 	/// zyx
 	/// </summary>
