@@ -5,10 +5,7 @@ class SkyBox
 {
 public:
 	SkyBox() {};
-	~SkyBox() 
-	{
-		model_;
-	};
+	~SkyBox(){};
 
 	void Initialize();
 
