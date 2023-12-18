@@ -95,7 +95,7 @@ SModelData ModelManager::GetObjData(uint32_t index)
 		if (s.get()->GetIndex() == index)
 		{
 			data = s.get()->GetData();
-			//data.filePath = key;
+			data.filePath_ = key;
 			return data;
 		}
 	}
@@ -111,6 +111,7 @@ Model* ModelManager::GetModel(uint32_t index)
 		if (s.get()->GetIndex() == index)
 		{
 			data = s.get()->GetModel();
+			data->SetFilePath(key);
 			return data;
 		}
 	}

@@ -58,4 +58,8 @@ private:
 
 	list<PointLight_param>LightDatas_;
 
+	LightingManager() = default;
+	~LightingManager() = default;
+	LightingManager(const  LightingManager&) = delete;
+	const  LightingManager& operator = (const LightingManager&) = delete;
 };

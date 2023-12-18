@@ -5,7 +5,10 @@ class SkyBox
 {
 public:
 	SkyBox() {};
-	~SkyBox() {};
+	~SkyBox() 
+	{
+		model_;
+	};
 
 	void Initialize();
 
@@ -18,6 +21,5 @@ private:
 
 	WorldTransform worldTransform_ = {};
 	unique_ptr<Game3dObject>model_ = nullptr;
-
 
 };

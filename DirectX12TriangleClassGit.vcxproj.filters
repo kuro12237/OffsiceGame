@@ -252,9 +252,6 @@
     <ClCompile Include="Project\GameObject\SkyBox\SkyBox.cpp">
       <Filter>Project\GameObject\SkyBox</Filter>
     </ClCompile>
-    <ClCompile Include="Project\GameObject\MapManager\MapManager.cpp">
-      <Filter>Project\GameObject\Map\MapManager</Filter>
-    </ClCompile>
     <ClCompile Include="Project\GameObject\Sun\Sun.cpp">
       <Filter>Project\GameObject\Sun</Filter>
     </ClCompile>
@@ -275,6 +272,9 @@
     </ClCompile>
     <ClCompile Include="Project\Scene\SelectScene.cpp">
       <Filter>Project\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Project\GameObject\MapManager\MapManager.cpp">
+      <Filter>Project\GameObject\Map\MapManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,4 @@
 #pragma once
-#include"pch.h"
-#include"CreateResource.h"
 #include"Model.h"
 
 class ModelObjData

@@ -10,9 +10,9 @@ void LightingManager::Initialize()
 {
     //Buffer生成
     LightingManager::GetInstance()->buffer_ = 
-        CreateBufferResource(sizeof(LightCount));
+        CreateResources::CreateBufferResource(sizeof(LightCount));
     LightingManager::GetInstance()->structureBuffer_ = 
-        CreateBufferResource(sizeof(PointLight_param)* LightingManager::GetInstance()->NumLight_);
+        CreateResources::CreateBufferResource(sizeof(PointLight_param)* LightingManager::GetInstance()->NumLight_);
 
     //descripter生成
     LightingManager::GetInstance()->dsvHandle_ = DescriptorManager::CreateInstancingSRV(

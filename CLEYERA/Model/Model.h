@@ -1,5 +1,4 @@
 #pragma once
-#include"Pch.h"
 #include"Graphics/TextureManager/TextureManager.h"
 #include"Light/LightingManager.h"
 
@@ -7,14 +6,7 @@
 
 #include"WorldTransform.h"
 #include"ViewProjection.h"
-#include"Light/Light.h"
 
-enum SUseLight
-{
-	NONE,
-	LAMBERT,
-	HARF_LAMBERT
-};
 
 class Model
 {
@@ -35,6 +27,8 @@ public:
 
 	SModelData GetModelData() { return modelData_; }
 
+	void SetFilePath(string path) { filePath_ = path; }
+
 	//Light GetLight() { return testLight_; }
 #pragma endregion 
 
@@ -42,8 +36,9 @@ private:
 	SModelData modelData_;
 
 	ComPtr<ID3D12Resource>buffer_ = nullptr;
-	D3D12_VERTEX_BUFFER_VIEW BufferView;
+	D3D12_VERTEX_BUFFER_VIEW BufferView{};
 
 	bool LightingFlag_ = false;
+	string filePath_;
 };
 

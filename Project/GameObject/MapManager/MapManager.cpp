@@ -8,9 +8,12 @@ MapManager* MapManager::GetInstance()
 
 void MapManager::Initialize()
 {
-    FileLoad("Stage1");
-	//FileLoad("Stage2");
-
+	if (!MapManager::GetInstance()->isLoad)
+	{
+		FileLoad("Stage1");
+		FileLoad("Stage2");
+		MapManager::GetInstance()->isLoad = true;
+	}
 	MapManager::GetInstance()->nowStage_ = 1;
 	
 }

@@ -4,20 +4,18 @@ Model::~Model()
 {
 }
 
-
 void Model::CreateObj(SModelData modeldata)
 {
 	modelData_ = modeldata;
 
-	buffer_ = CreateBufferResource(
+	buffer_ = CreateResources::CreateBufferResource(
 		sizeof(VertexData) * modelData_.vertices.size());
 
 	BufferView =
 		CreateResources::VertexCreateBufferView(
 			sizeof(VertexData) * modelData_.vertices.size(),
-			buffer_.Get(),
-			int(modelData_.vertices.size()
-				));
+			buffer_,
+			int(modelData_.vertices.size()));
 }
 
 void Model::CommandCallPipelineVertex(bool LightingFlag)

@@ -24,7 +24,7 @@ void ViewProjection::UpdateMatrix()
 
 void ViewProjection::CreateBuffer()
 {
-	buffer_ = CreateBufferResource(sizeof(TransformationViewMatrix));
+	buffer_ = CreateResources::CreateBufferResource(sizeof(TransformationViewMatrix));
 }
 
 void ViewProjection::Map()

@@ -5,7 +5,7 @@ GameManager::GameManager()
 	Cleyera::Initialize();
 	Scene_ = new SelectScene();
 	Scene_->Initialize();
-	MapManager::Initialize();
+	
 }
 
 GameManager::~GameManager()
@@ -36,8 +36,6 @@ void GameManager::Run()
 
 void GameManager::ChangeState(IScene *newScene)
 {
-	DebugTools::ClearCommand();
-
 	delete Scene_;
 	Scene_ = newScene;
 	Scene_->Initialize();

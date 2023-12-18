@@ -2,7 +2,7 @@
 
 void Game3dObject::Create()
 {
-	MaterialBuffer_ = (CreateBufferResource(sizeof(Material)));
+	MaterialBuffer_ = CreateResources::CreateBufferResource(sizeof(Material));
 }
 
 void Game3dObject::SetModel(uint32_t index)
@@ -22,13 +22,14 @@ void Game3dObject::Draw(WorldTransform worldTransform ,ViewProjection view)
 		return;
 	}
 
+	//Material転送
 	Material * materialData;
 	MaterialBuffer_->Map(0, nullptr, reinterpret_cast<void**>(&materialData));
 	materialData->shininess = shininess;
 	materialData->color = color_;
 	materialData->uvTransform = MatrixTransform::AffineMatrix(uvScale_, uvRotate, uvTranslate);
 
-
+	//パイプラインつむ
 	model_->CommandCallPipelineVertex(true);
 	Commands command = DirectXCommon::GetInstance()->GetCommands();
 

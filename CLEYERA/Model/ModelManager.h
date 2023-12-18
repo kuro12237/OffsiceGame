@@ -1,5 +1,4 @@
 #pragma once
-#include"Pch.h"
 #include"ModelObjData.h"
 #include"Graphics/TextureManager/TextureManager.h"
 

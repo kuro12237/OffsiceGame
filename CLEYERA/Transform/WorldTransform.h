@@ -20,8 +20,8 @@ struct WorldTransform
 	Vector3 translate = {0.0f,0.0f,0.0f};
 
 	Matrix4x4 matWorld = {};
+	
 	const WorldTransform* parent = {};
-
 
 	ComPtr<ID3D12Resource> buffer_ = nullptr;
 
@@ -33,10 +33,11 @@ struct WorldTransform
 	void Initialize();
 	void SRTSetting(Vector3 s = { 1,1,1 }, Vector3 r = { 0,0,0 }, Vector3 t = {0,0,0});
 	void UpdateMatrix();
-  
+	void TransfarMatrix();
+private:
 	void CreateBuffer();
 	void Map();
 	void UnMap();
-	void TransfarMatrix();
+
 };
 

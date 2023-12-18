@@ -7,6 +7,7 @@ MapObject::MapObject()
 
 MapObject::~MapObject()
 {
+	block_.clear();
 }
 
 void MapObject::Initialize(vector<vector<vector<uint32_t>>> nowData)
