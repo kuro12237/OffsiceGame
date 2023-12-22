@@ -320,7 +320,7 @@ void DirectXCommon::CreateDescritorHeap()
 	DirectXCommon::GetInstance()->rtv.m_pDescritorHeap =
 		CreateDescripterHeap(D3D12_DESCRIPTOR_HEAP_TYPE_RTV, 2, false);
 	DirectXCommon::GetInstance()->m_pSrvDescriptorHeap =
-		CreateDescripterHeap(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV, 128, true);
+		CreateDescripterHeap(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV, 1000000, true);
 	DirectXCommon::GetInstance()->m_pDsvDescripterHeap =
 		CreateDescripterHeap(D3D12_DESCRIPTOR_HEAP_TYPE_DSV, 1, false);
 

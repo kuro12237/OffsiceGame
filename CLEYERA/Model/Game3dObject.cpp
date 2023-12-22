@@ -2,7 +2,9 @@
 
 void Game3dObject::Create()
 {
-	MaterialBuffer_ = CreateResources::CreateBufferResource(sizeof(Material));
+	MaterialBuffer_ = nullptr;
+	
+	MaterialBuffer_ = CreateResources::CreateBufferResource(sizeof(Material), MaterialBuffer_.Get());
 }
 
 void Game3dObject::SetModel(uint32_t index)
@@ -15,7 +17,7 @@ void Game3dObject::SetModel(uint32_t index)
 	prevModelIndex_ = index;
 }
 
-void Game3dObject::Draw(WorldTransform worldTransform ,ViewProjection view)
+void Game3dObject::Draw(const WorldTransform& worldTransform, const ViewProjection& view)
 {
 	if (model_ == nullptr)
 	{

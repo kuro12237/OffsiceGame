@@ -78,7 +78,9 @@ public:
 	/// <param name="device"></param>
 	/// <param name="sizeInbyte"></param>
 	/// <returns></returns>
-	static ComPtr<ID3D12Resource> const CreateBufferResource(size_t sizeInbyte);
+	static ID3D12Resource* const CreateBufferResource(size_t sizeInbyte);
+
+	static ID3D12Resource* CreateBufferResource(size_t sizeInbyte, ID3D12Resource* resource);
 
 	/// <summary>
 	/// BufferView��쐬

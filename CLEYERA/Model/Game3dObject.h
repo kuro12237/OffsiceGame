@@ -5,13 +5,13 @@ class Game3dObject
 {
 public:
 	Game3dObject() {};
-	~Game3dObject() {};
+	~Game3dObject() { MaterialBuffer_.Reset(); };
 
 	void Create();
 
 	void SetModel(uint32_t index);
 
-	void Draw(WorldTransform worldTransform,ViewProjection view);
+	void Draw(const WorldTransform &worldTransform,const ViewProjection &view);
 
 
 #pragma region Set
