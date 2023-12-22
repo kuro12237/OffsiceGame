@@ -81,9 +81,7 @@ public:
 	/// <param name="device"></param>
 	/// <param name="sizeInbyte"></param>
 	/// <returns></returns>
-	static ComPtr<ID3D12Resource> CreateBufferResource(size_t sizeInbyte);
-
-	static void CreateBufferResource(size_t sizeInbyte, ComPtr<ID3D12Resource> &Resource);
+	static ID3D12Resource *CreateBufferResource(size_t sizeInbyte);
 
 
 	/// <summary>

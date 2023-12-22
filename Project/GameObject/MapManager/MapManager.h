@@ -5,6 +5,9 @@
 #include"FileLoader.h"
 #include"MapData.h"
 
+#define MAP_MAX_X 30
+#define MAP_MAX_Y 30
+#define MAP_MAX_Z 2
 
 class MapManager
 {
@@ -39,6 +42,11 @@ private:
 	/// </summary>
 	vector<vector<vector<uint32_t>>>nowMapData_ = {};
 
+	/// <summary>
+	/// 初期化事故防止
+	/// </summary>
+	bool InitializeLock_ = false;
+
 	string FilePath = "Resources/MapData/";
 
 	map<string, unique_ptr<MapData>>mapDatas_;
@@ -46,4 +54,6 @@ private:
 	uint32_t ModelHandle_ = 0;
 
 	bool flag = false;
+
+	string nowFilename{};
 };
