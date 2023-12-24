@@ -12,6 +12,8 @@
 #include<chrono>
 #include<random>
 #include<map>
+#include<array>
+
 
 #include<Windows.h>
 #pragma comment(lib,"winmm.lib")
