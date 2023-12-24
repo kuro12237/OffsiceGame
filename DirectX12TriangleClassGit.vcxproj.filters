@@ -130,6 +130,12 @@
     <Filter Include="CLEYERA\Models\state">
       <UniqueIdentifier>{000a6de3-f7f4-4648-a4b4-776f10012b9b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Project\GameObject\Player">
+      <UniqueIdentifier>{7bc474e9-d6cf-4ddc-ba9c-6c3b977ae0cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\GameObject\Player\Commands">
+      <UniqueIdentifier>{c8279f06-eea6-4a16-9af7-15a12fa35a07}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="CLEYERA\Config\.editorconfig">
@@ -278,6 +284,18 @@
     </ClCompile>
     <ClCompile Include="CLEYERA\Model\State\ModelSphereState.cpp">
       <Filter>CLEYERA\Models\state</Filter>
+    </ClCompile>
+    <ClCompile Include="Project\GameObject\Player\Player.cpp">
+      <Filter>Project\GameObject\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Project\GameObject\Player\PlayerInputHandler.cpp">
+      <Filter>Project\GameObject\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Project\GameObject\Player\Commands\PlayerMoveLeftCommand.cpp">
+      <Filter>Project\GameObject\Player\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="Project\GameObject\Player\Commands\PlayerMoveRightCommand.cpp">
+      <Filter>Project\GameObject\Player\Commands</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -463,6 +481,24 @@
     </ClInclude>
     <ClInclude Include="CLEYERA\Utility\CollisionManager\Collider\OBBCollider.h">
       <Filter>CLEYERA\Utility\CollisionManager\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="Project\GameObject\Player\Player.h">
+      <Filter>Project\GameObject\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CLEYERA\Utility\CollisionManager\Collider\BoxCollider.h">
+      <Filter>CLEYERA\Utility\CollisionManager\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="Project\GameObject\Player\PlayerInputHandler.h">
+      <Filter>Project\GameObject\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Project\GameObject\Player\Commands\PlayerMoveLeftCommand.h">
+      <Filter>Project\GameObject\Player\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Project\GameObject\Player\IPlayerCommand.h">
+      <Filter>Project\GameObject\Player\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Project\GameObject\Player\Commands\PlayerMoveRightCommand.h">
+      <Filter>Project\GameObject\Player\Commands</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

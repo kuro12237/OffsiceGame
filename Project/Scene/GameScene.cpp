@@ -15,7 +15,12 @@ void GameScene::Initialize()
 	sun_ = make_unique<Sun>();
 	sun_->Initialize();
 
-	worldTransform_.Initialize();
+	player_ = make_unique<Player>();
+	player_->Initialize({2,2,0});
+
+	playerInputHandler_ = make_unique<PlayerIputHandler>();
+	playerInputHandler_->AssignMoveLeftA();
+	playerInputHandler_->AssignMoveRightD();
 
 	MapManager::Initialize();
 }
@@ -36,14 +41,13 @@ void GameScene::Update(GameManager* Scene)
 		ImGui::InputInt("StageNumber", &SelectStage_);
 		ImGui::TreePop();
 	}
-
 	if (ImGui::TreeNode("Camera"))
 	{
 		ImGui::DragFloat3("translate", &viewProjection_.translation_.x, -1.0f, 1.0f);
-		ImGui::DragFloat3("rotate", &viewProjection_.rotation_.x, -1.0f, 1.0f);
+		ImGui::DragFloat3("rotate", &viewProjection_.rotation_.x, -0.1f, 0.1f);
 		ImGui::TreePop();
 	}
-	ImGui::End();
+	
 
 	if (Input::PushKeyPressed(DIK_P))
 	{
@@ -58,16 +62,15 @@ void GameScene::Update(GameManager* Scene)
 	{
 		skyBox_ = make_unique<SkyBox>();
 		skyBox_->Initialize();
-
-
 	}
-	//MapManager::SetNextMaptip(SelectStage_);
 
+	PlayerInput();
+	player_->Update();
 
-	worldTransform_.UpdateMatrix();
-	
 	sun_->Update();
 	skyBox_->Update();
+
+	ImGui::End();
 
 	viewProjection_.UpdateMatrix();
 
@@ -79,11 +82,20 @@ void GameScene::Back2dSpriteDraw()
 
 void GameScene::Object3dDraw()
 {
-
+	player_->Draw(viewProjection_);
 	skyBox_->Draw(viewProjection_);
 	MapManager::Draw(viewProjection_);
 }
 
 void GameScene::Flont2dSpriteDraw()
 {
+}
+
+void GameScene::PlayerInput()
+{
+	playerCommand_ = playerInputHandler_->HandleInput();
+	if (this->playerCommand_)
+	{
+		playerCommand_->Exec(*player_);
+	}
 }

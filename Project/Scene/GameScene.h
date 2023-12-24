@@ -13,12 +13,15 @@
 #include"GameObject/MapManager/MapManager.h"
 #include"Light/LightingManager.h"
 #include"GameObject/Sun/Sun.h"
+
+#include"GameObject/Player/Player.h"
+#include"GameObject/Player/PlayerInputHandler.h"
+
 class GameScene :public IScene
 {
 public:
 	GameScene() {};
 	~GameScene() {};
-
 
 	void Initialize()override;
 
@@ -31,12 +34,14 @@ public:
 private:
 
 	ViewProjection viewProjection_{};
-
-	unique_ptr<Model>model_ = nullptr;
-	WorldTransform worldTransform_{};
-
-	unique_ptr<SkyBox>skyBox_ = nullptr;
-	unique_ptr<Sun>sun_ = nullptr;
 	int SelectStage_ = 1;
 
+	void PlayerInput();
+	
+	unique_ptr<SkyBox>skyBox_ = nullptr;
+	unique_ptr<Sun>sun_ = nullptr;
+
+	unique_ptr<Player>player_ = nullptr;
+	unique_ptr<PlayerIputHandler>playerInputHandler_ = nullptr;
+	IPlayerCommand* playerCommand_ = nullptr;
 };
