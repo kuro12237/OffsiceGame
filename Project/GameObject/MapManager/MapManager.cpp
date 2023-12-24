@@ -107,6 +107,8 @@ void MapManager::FileLoad(string name)
 	vector<vector<vector<uint32_t>>>maptip{};
 	int mapYCount = -1;
 	
+	maptip.resize(MAP_MAX_Z);
+	
 	while (getline(file, line))
 	{
 		istringstream line_stream(line);
@@ -129,21 +131,19 @@ void MapManager::FileLoad(string name)
 		{
 			getline(line_stream, word, ',');
 			ZNumber = (uint32_t)std::atof(word.c_str());
-			maptip.resize(ZNumber+1);
 			mapYCount = -1;
 			ZNumNumber++;
+			maptip[ZNumber].resize(MAP_MAX_Y);
 		}
 
 		if (word.find("MapData" ) == 0)
 		{
 			//Y++
 			mapYCount++;
-			maptip[ZNumber].resize(mapYCount+1);
-		
-			size_t mapCount = (line.size() - string("MapData").size()) / 2;
-			maptip[ZNumber][mapYCount].resize(mapCount);
 
-			for (int mapXCount = 0; mapXCount < mapCount; mapXCount++)
+			maptip[ZNumber][mapYCount].resize(MAP_MAX_X);
+
+			for (int mapXCount = 0; mapXCount < MAP_MAX_X; mapXCount++)
 			{
 				getline(line_stream, word, ',');
 				uint32_t xNumber = (uint32_t)atof(word.c_str());
