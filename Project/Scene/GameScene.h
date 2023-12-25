@@ -17,6 +17,8 @@
 #include"GameObject/Player/Player.h"
 #include"GameObject/Player/PlayerInputHandler.h"
 
+#include"GameObject/MapManager/MapCollisionManager.h"
+
 class GameScene :public IScene
 {
 public:
@@ -44,4 +46,6 @@ private:
 	unique_ptr<Player>player_ = nullptr;
 	unique_ptr<PlayerIputHandler>playerInputHandler_ = nullptr;
 	IPlayerCommand* playerCommand_ = nullptr;
+
+	unique_ptr<MapCollisionManager>mapCollisionManager_ = nullptr;
 };

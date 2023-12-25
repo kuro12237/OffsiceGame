@@ -27,6 +27,9 @@ public:
 
 	static uint32_t GetNowstageMapTip() { return MapManager::GetInstance()->nowStage_; };
 
+	//static vector<vector<vector<Block_param>>> GetMapObject() { return MapManager::GetInstance()->block_; }
+
+	static vector<vector<vector<uint32_t>>> GetMapTipData() { return MapManager::GetInstance()->nowMapData_; }
 private:
 
 	static void FileLoad(string name);

@@ -136,6 +136,12 @@
     <Filter Include="Project\GameObject\Player\Commands">
       <UniqueIdentifier>{c8279f06-eea6-4a16-9af7-15a12fa35a07}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Project\GameObject\MapManager\MapCollision">
+      <UniqueIdentifier>{45d001d7-8613-4002-8758-c8ce5d24fdbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\GameObject\MapManager\MapCollision\MapCollider">
+      <UniqueIdentifier>{c6da8d5a-1724-4f3d-85e3-f183357e87b0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="CLEYERA\Config\.editorconfig">
@@ -295,6 +301,15 @@
       <Filter>Project\GameObject\Player\Commands</Filter>
     </ClCompile>
     <ClCompile Include="Project\GameObject\Player\Commands\PlayerMoveRightCommand.cpp">
+      <Filter>Project\GameObject\Player\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="Project\GameObject\MapManager\MapCollisionManager.cpp">
+      <Filter>Project\GameObject\MapManager\MapCollision\MapCollider</Filter>
+    </ClCompile>
+    <ClCompile Include="Project\GameObject\Player\Commands\PlayerMoveTopCommand.cpp">
+      <Filter>Project\GameObject\Player\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="Project\GameObject\Player\Commands\PlayerMoveDownCommand.cpp">
       <Filter>Project\GameObject\Player\Commands</Filter>
     </ClCompile>
   </ItemGroup>
@@ -498,6 +513,18 @@
       <Filter>Project\GameObject\Player\Commands</Filter>
     </ClInclude>
     <ClInclude Include="Project\GameObject\Player\Commands\PlayerMoveRightCommand.h">
+      <Filter>Project\GameObject\Player\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Project\GameObject\MapManager\MapCollider.h">
+      <Filter>Project\GameObject\MapManager\MapCollision\MapCollider</Filter>
+    </ClInclude>
+    <ClInclude Include="Project\GameObject\MapManager\MapCollisionManager.h">
+      <Filter>Project\GameObject\MapManager\MapCollision\MapCollider</Filter>
+    </ClInclude>
+    <ClInclude Include="Project\GameObject\Player\Commands\PlayerMoveTopCommand.h">
+      <Filter>Project\GameObject\Player\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Project\GameObject\Player\Commands\PlayerMoveDownCommand.h">
       <Filter>Project\GameObject\Player\Commands</Filter>
     </ClInclude>
   </ItemGroup>

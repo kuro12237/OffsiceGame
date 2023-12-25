@@ -8,7 +8,7 @@ void GameScene::Initialize()
 	viewProjection_.translation_ = { 0.0f,3.0f,-16.0f };
 	viewProjection_.UpdateMatrix();
 
-
+	
 	skyBox_ = make_unique<SkyBox>();
 	skyBox_->Initialize();
 
@@ -16,11 +16,18 @@ void GameScene::Initialize()
 	sun_->Initialize();
 
 	player_ = make_unique<Player>();
-	player_->Initialize({2,2,0});
+	player_->Initialize({5,5,0});
+
 
 	playerInputHandler_ = make_unique<PlayerIputHandler>();
 	playerInputHandler_->AssignMoveLeftA();
 	playerInputHandler_->AssignMoveRightD();
+	playerInputHandler_->AssignMoveDownS();
+	playerInputHandler_->AssignMoveTopW();
+	player_->Update();
+	player_->Move();
+
+	mapCollisionManager_ = make_unique<MapCollisionManager>();
 
 	MapManager::Initialize();
 }
@@ -67,6 +74,12 @@ void GameScene::Update(GameManager* Scene)
 	PlayerInput();
 	player_->Update();
 
+	mapCollisionManager_->liseClear();
+	mapCollisionManager_->PushCollider(player_.get());
+	mapCollisionManager_->CheckCollion();
+	
+	player_->Move();
+
 	sun_->Update();
 	skyBox_->Update();
 
@@ -84,6 +97,7 @@ void GameScene::Object3dDraw()
 {
 	player_->Draw(viewProjection_);
 	skyBox_->Draw(viewProjection_);
+
 	MapManager::Draw(viewProjection_);
 }
 
